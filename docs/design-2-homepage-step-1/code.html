@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Monica's Miracle Mop | The Pristine Prism</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary": "#006878",
+              "surface-container-highest": "#dfe3e6",
+              "secondary-fixed-dim": "#53d7f1",
+              "on-tertiary": "#ffffff",
+              "outline-variant": "#cec3d3",
+              "background": "#f6fafd",
+              "surface": "#f6fafd",
+              "surface-container-low": "#f0f4f7",
+              "primary": "#511983",
+              "on-surface-variant": "#4c4451",
+              "on-error": "#ffffff",
+              "on-tertiary-fixed-variant": "#004d65",
+              "on-secondary-fixed": "#001f25",
+              "surface-dim": "#d6dbdd",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#a6eeff",
+              "on-primary-fixed": "#2c0050",
+              "on-error-container": "#93000a",
+              "on-primary": "#ffffff",
+              "on-background": "#171c1f",
+              "tertiary": "#003e52",
+              "inverse-primary": "#ddb7ff",
+              "secondary-container": "#65e5ff",
+              "on-primary-container": "#dbb2ff",
+              "primary-fixed-dim": "#ddb7ff",
+              "surface-variant": "#dfe3e6",
+              "on-secondary": "#ffffff",
+              "tertiary-container": "#005771",
+              "surface-container-high": "#e5e9ec",
+              "tertiary-fixed-dim": "#82d0f4",
+              "tertiary-fixed": "#bee9ff",
+              "surface-container": "#eaeef1",
+              "primary-fixed": "#f0dbff",
+              "surface-bright": "#f6fafd",
+              "outline": "#7d7482",
+              "on-tertiary-fixed": "#001f2a",
+              "inverse-on-surface": "#edf1f4",
+              "on-primary-fixed-variant": "#602a92",
+              "error-container": "#ffdad6",
+              "primary-container": "#6a359c",
+              "error": "#ba1a1a",
+              "on-secondary-fixed-variant": "#004e5b",
+              "on-secondary-container": "#006574",
+              "on-surface": "#171c1f",
+              "on-tertiary-container": "#7ecdf0",
+              "inverse-surface": "#2c3134",
+              "surface-tint": "#7945ac"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Work Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .sparkle-motif {
+        position: absolute;
+        pointer-events: none;
+        z-index: 10;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+      }
+      .signature-gradient {
+        background: linear-gradient(135deg, #511983 0%, #6a359c 100%);
+      }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-background selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-2">
+<span class="text-2xl font-black text-purple-800 dark:text-purple-300 italic font-headline tracking-tight">Monica's Miracle Mop</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-purple-700 dark:text-purple-300 border-b-2 border-purple-600 pb-1 font-label font-bold transition-all" href="#">Services</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-purple-500 font-label font-bold transition-all hover:scale-105" href="#">Pricing</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-purple-500 font-label font-bold transition-all hover:scale-105" href="#">Reviews</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-purple-500 font-label font-bold transition-all hover:scale-105" href="#">About</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:scale-110 transition-transform" data-icon="calendar_today">calendar_today</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:scale-110 transition-transform" data-icon="person">person</button>
+<button class="signature-gradient text-on-primary px-6 py-2.5 rounded-full font-headline font-bold hover:scale-105 transition-all shadow-lg">
+                    Book Now
+                </button>
+</div>
+</div>
+</nav>
+<main class="pt-24 overflow-x-hidden">
+<!-- Hero Section -->
+<section class="relative px-8 py-20 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+<div class="relative z-10">
+<div class="inline-flex items-center gap-2 bg-secondary-fixed text-on-secondary-fixed px-4 py-1 rounded-full mb-6 font-label font-bold text-sm tracking-wide">
+<span class="material-symbols-outlined text-sm" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                    MAKING HOMES SPARKLE SINCE 2014
+                </div>
+<h1 class="font-headline text-5xl md:text-7xl font-extrabold text-primary leading-[1.1] mb-6 tracking-tight">
+                    Pure Clarity. <br/><span class="text-secondary italic">Miracle Results.</span>
+</h1>
+<p class="text-lg text-on-surface-variant max-w-lg mb-10 leading-relaxed">
+                    Experience the transformative magic of Monica’s. We don’t just clean—we restore the peace and brilliance of your sanctuary using organic-fluidity techniques.
+                </p>
+<div class="flex flex-wrap gap-4">
+<button class="signature-gradient text-on-primary px-8 py-4 rounded-full font-headline font-bold text-lg hover:scale-105 transition-all shadow-xl flex items-center gap-2">
+                        Schedule a Deep Clean
+                        <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="bg-surface-container-low text-primary px-8 py-4 rounded-full font-headline font-bold text-lg hover:bg-surface-container-high transition-all">
+                        View Services
+                    </button>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -top-10 -right-10 w-64 h-64 bg-secondary-fixed-dim/30 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-10 -left-10 w-64 h-64 bg-primary-fixed/30 rounded-full blur-3xl"></div>
+<!-- Floating Sparkle Accents -->
+<span class="material-symbols-outlined sparkle-motif text-secondary text-4xl top-0 left-0" data-icon="sparkles" style="font-variation-settings: 'FILL' 1;">colors_spark</span>
+<span class="material-symbols-outlined sparkle-motif text-primary-container text-2xl bottom-1/4 -right-4" data-icon="flare">flare</span>
+<div class="relative rounded-xl overflow-hidden shadow-2xl transform lg:rotate-2 hover:rotate-0 transition-transform duration-500">
+<img alt="Modern clean kitchen" class="w-full h-[500px] object-cover" data-alt="Modern minimalist kitchen with sunlight reflecting on clean surfaces" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA18o1Ki5OHUuAL4hSOSotwGEXEbHiQtpT8igpOFtO1mink-dNhaPxl2lNtGhmrY5moQqp3wj0cNQDde9Dc_sZJwACvCP708cjzXltGkc-0AP3x9alKlXX9jrgQuVnaACcf1qy0IoRuxunm_AHO4Xu6inMUeyVQr1E1C6e9y0HgA6QGTmuH68OBAjh7ZtVVIIYRlPbuXPAJTEkqehv0Jpr67Ny8eJQ0sbBcjgMk70J7Pgp2nfiuOzS6-BOb1vhBXKFEt3GArf9H2cxo"/>
+<div class="absolute bottom-6 left-6 glass-card p-6 rounded-lg max-w-xs shadow-lg">
+<div class="flex gap-1 text-secondary mb-2">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="italic text-on-surface text-sm">"It literally looks like a prism of light in here. Best deep clean ever!"</p>
+<p class="font-bold text-xs mt-2">— Sarah J., West End</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Service Bento Grid -->
+<section class="px-8 py-24 bg-surface-container-low">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline text-4xl md:text-5xl font-bold text-tertiary mb-4">Our Miracle Tiers</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto">Choose the level of radiance that fits your lifestyle. Every tier includes our signature 'Swoosh' detail.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Standard Clean -->
+<div class="bg-surface-container-lowest p-8 rounded-lg group hover:translate-y-[-8px] transition-all duration-300">
+<div class="w-16 h-16 bg-secondary-fixed rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="cleaning_services">cleaning_services</span>
+</div>
+<h3 class="font-headline text-2xl font-bold text-primary mb-3">Standard Clean</h3>
+<p class="text-on-surface-variant mb-6 text-sm leading-relaxed">Perfect for the weekly refresh. We handle the dust, floors, and surfaces so you can focus on living.</p>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-2 text-sm text-on-surface"><span class="material-symbols-outlined text-secondary text-lg" data-icon="check_circle">check_circle</span> Dusting &amp; Vacuuming</li>
+<li class="flex items-center gap-2 text-sm text-on-surface"><span class="material-symbols-outlined text-secondary text-lg" data-icon="check_circle">check_circle</span> Kitchen Sanitization</li>
+<li class="flex items-center gap-2 text-sm text-on-surface"><span class="material-symbols-outlined text-secondary text-lg" data-icon="check_circle">check_circle</span> Bathroom Polishing</li>
+</ul>
+<button class="w-full py-3 border-2 border-secondary-fixed text-secondary font-bold rounded-full hover:bg-secondary-fixed transition-colors">Select Tier</button>
+</div>
+<!-- Deep Clean -->
+<div class="signature-gradient p-8 rounded-lg relative overflow-hidden text-on-primary group hover:scale-[1.02] transition-all duration-300 shadow-2xl shadow-primary/20">
+<div class="absolute top-4 right-4 bg-secondary text-on-secondary px-3 py-1 rounded-full text-xs font-bold">MOST POPULAR</div>
+<div class="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="temp_preferences_custom">temp_preferences_custom</span>
+</div>
+<h3 class="font-headline text-2xl font-bold mb-3">Deep Clean</h3>
+<p class="text-white/80 mb-6 text-sm leading-relaxed">The "Miracle" standard. We reach every nook, cranny, and baseboard to restore that 'new home' scent.</p>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-secondary-container text-lg" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span> Inside Cabinets &amp; Oven</li>
+<li class="flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-secondary-container text-lg" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span> Window Tracks &amp; Blinds</li>
+<li class="flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-secondary-container text-lg" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span> Grout Steam Cleaning</li>
+</ul>
+<button class="w-full py-3 bg-white text-primary font-bold rounded-full hover:bg-secondary-container transition-colors">Choose Transformation</button>
+</div>
+<!-- Move In/Out -->
+<div class="bg-surface-container-lowest p-8 rounded-lg group hover:translate-y-[-8px] transition-all duration-300">
+<div class="w-16 h-16 bg-tertiary-fixed rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-tertiary text-3xl" data-icon="local_shipping">local_shipping</span>
+</div>
+<h3 class="font-headline text-2xl font-bold text-primary mb-3">Move In/Out</h3>
+<p class="text-on-surface-variant mb-6 text-sm leading-relaxed">Starting fresh? We ensure your new space is a blank canvas of purity or leave your old one spotless for the deposit.</p>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-2 text-sm text-on-surface"><span class="material-symbols-outlined text-tertiary text-lg" data-icon="check_circle">check_circle</span> Full Appliance Detail</li>
+<li class="flex items-center gap-2 text-sm text-on-surface"><span class="material-symbols-outlined text-tertiary text-lg" data-icon="check_circle">check_circle</span> Wall &amp; Ceiling Dusting</li>
+<li class="flex items-center gap-2 text-sm text-on-surface"><span class="material-symbols-outlined text-tertiary text-lg" data-icon="check_circle">check_circle</span> Closet Scouring</li>
+</ul>
+<button class="w-full py-3 border-2 border-tertiary-fixed text-tertiary font-bold rounded-full hover:bg-tertiary-fixed transition-colors">Select Tier</button>
+</div>
+</div>
+</div>
+</section>
+<!-- The "Miracle" Difference -->
+<section class="px-8 py-24 max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+<div class="flex-1 space-y-8">
+<h2 class="font-headline text-4xl font-extrabold text-primary leading-tight">The Pristine Prism Difference</h2>
+<div class="space-y-6">
+<div class="flex gap-6 items-start">
+<div class="flex-shrink-0 w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="verified_user">verified_user</span>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-1">Vetted Professionals</h4>
+<p class="text-on-surface-variant text-sm">Every cleaner is Monica-certified and undergoes a rigorous 50-point quality check.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="flex-shrink-0 w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="eco">eco</span>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-1">Eco-Miracle Products</h4>
+<p class="text-on-surface-variant text-sm">Our custom-blended cleaning solutions are family, pet, and planet safe without sacrificing power.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="flex-shrink-0 w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="loyalty">loyalty</span>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-1">Happiness Guarantee</h4>
+<p class="text-on-surface-variant text-sm">Not absolutely sparkling? We'll come back and re-clean for free within 24 hours.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full relative">
+<div class="bg-surface-container-high rounded-xl p-1 aspect-square overflow-hidden transform md:-rotate-3">
+<img alt="Professional cleaner working" class="w-full h-full object-cover rounded-lg" data-alt="Close up of a professional cleaner using eco-friendly products in a bright room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjg22nFuKHlbcdKKJC2WEJqnN5edhCsD7BrG-GCF3aHSkwExSAAh9kyDXF8eGEwQdplLC6gioEx7arg7U0j--f1zPLF6cO34Y5vK1tMTX914DdCXoiJLSh8KT_Pt5dTLj9-lGYRfI29S2UOGIOQ36GkROA_6KCbSFR9zEqu-o-9a-MMC3CWi4c-pr9avUa3kDFKAHUn_eRcuQ6Qg097gXZVgJfIAQ8puE0k_cj9ioY0HFSzRGeW9d7Lw1vQaJSDxzmLgMj6hMWbbZz"/>
+</div>
+<div class="absolute -bottom-8 -right-8 w-40 h-40 bg-secondary-fixed rounded-xl -z-10"></div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="px-8 py-20">
+<div class="max-w-5xl mx-auto signature-gradient rounded-xl p-12 text-center text-on-primary relative overflow-hidden">
+<span class="material-symbols-outlined absolute top-10 left-10 text-6xl opacity-10" data-icon="auto_clean">cleaning</span>
+<span class="material-symbols-outlined absolute bottom-10 right-10 text-6xl opacity-10" data-icon="mop">mop</span>
+<h2 class="font-headline text-4xl font-bold mb-6">Ready to see the magic for yourself?</h2>
+<p class="text-lg text-white/90 mb-10 max-w-xl mx-auto">Book your first cleaning today and receive 20% off our Deep Clean package. Limited slots available this week.</p>
+<div class="flex justify-center">
+<button class="bg-white text-primary px-10 py-4 rounded-full font-headline font-bold text-xl hover:scale-105 transition-all shadow-xl">
+                        Claim Your 20% Discount
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-teal-700 dark:bg-teal-900 rounded-t-[3rem] mt-20 text-white">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 px-12 py-16 max-w-7xl mx-auto font-['Work_Sans'] text-sm leading-relaxed">
+<div class="col-span-2 md:col-span-1">
+<span class="text-xl font-extrabold text-white tracking-widest block mb-6">Monica's Miracle Mop</span>
+<p class="text-teal-50/80 mb-6">Redefining cleanliness through editorial precision and modern care.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary-fixed" data-icon="facebook">social_leaderboard</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary-fixed" data-icon="photo_camera">photo_camera</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary-fixed" data-icon="alternate_email">alternate_email</span>
+</div>
+</div>
+<div>
+<h5 class="font-bold mb-6 text-white uppercase tracking-wider text-xs">Services</h5>
+<ul class="space-y-4">
+<li><a class="text-teal-50/80 hover:text-white transition-all hover:translate-x-1 inline-block" href="#">Residential Cleaning</a></li>
+<li><a class="text-teal-50/80 hover:text-white transition-all hover:translate-x-1 inline-block" href="#">Deep Clean</a></li>
+<li><a class="text-teal-50/80 hover:text-white transition-all hover:translate-x-1 inline-block" href="#">Move In/Out</a></li>
+<li><a class="text-teal-50/80 hover:text-white transition-all hover:translate-x-1 inline-block" href="#">Office Care</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold mb-6 text-white uppercase tracking-wider text-xs">Company</h5>
+<ul class="space-y-4">
+<li><a class="text-teal-50/80 hover:text-white transition-all hover:translate-x-1 inline-block" href="#">Privacy Policy</a></li>
+<li><a class="text-teal-50/80 hover:text-white transition-all hover:translate-x-1 inline-block" href="#">Terms of Service</a></li>
+<li><a class="text-teal-50/80 hover:text-white transition-all hover:translate-x-1 inline-block" href="#">Careers</a></li>
+<li><a class="text-teal-50/80 hover:text-white transition-all hover:translate-x-1 inline-block" href="#">Sustainability</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold mb-6 text-white uppercase tracking-wider text-xs">Join our Sparkle List</h5>
+<div class="relative">
+<input class="w-full bg-teal-800/50 border-none rounded-full px-4 py-3 text-white placeholder-teal-100/50 focus:ring-2 focus:ring-secondary-fixed" placeholder="Email address" type="email"/>
+<button class="absolute right-2 top-1.5 bg-secondary text-white p-1.5 rounded-full hover:bg-secondary-fixed hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="border-t border-white/10 py-8 px-12 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-teal-50/60 text-xs">
+<p>© 2024 Monica's Miracle Mop. All rights reserved.</p>
+<div class="flex gap-6">
+<span>Certified B-Corp</span>
+<span>Licensed &amp; Insured</span>
+</div>
+</div>
+</footer>
+</body></html>

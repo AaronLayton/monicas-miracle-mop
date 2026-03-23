@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Schedule - Monica's Miracle Mop</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary": "#006878",
+              "surface-container-highest": "#dfe3e6",
+              "secondary-fixed-dim": "#53d7f1",
+              "on-tertiary": "#ffffff",
+              "outline-variant": "#cec3d3",
+              "background": "#f6fafd",
+              "surface": "#f6fafd",
+              "surface-container-low": "#f0f4f7",
+              "primary": "#511983",
+              "on-surface-variant": "#4c4451",
+              "on-error": "#ffffff",
+              "on-tertiary-fixed-variant": "#004d65",
+              "on-secondary-fixed": "#001f25",
+              "surface-dim": "#d6dbdd",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#a6eeff",
+              "on-primary-fixed": "#2c0050",
+              "on-error-container": "#93000a",
+              "on-primary": "#ffffff",
+              "on-background": "#171c1f",
+              "tertiary": "#003e52",
+              "inverse-primary": "#ddb7ff",
+              "secondary-container": "#65e5ff",
+              "on-primary-container": "#dbb2ff",
+              "primary-fixed-dim": "#ddb7ff",
+              "surface-variant": "#dfe3e6",
+              "on-secondary": "#ffffff",
+              "tertiary-container": "#005771",
+              "surface-container-high": "#e5e9ec",
+              "tertiary-fixed-dim": "#82d0f4",
+              "tertiary-fixed": "#bee9ff",
+              "surface-container": "#eaeef1",
+              "primary-fixed": "#f0dbff",
+              "surface-bright": "#f6fafd",
+              "outline": "#7d7482",
+              "on-tertiary-fixed": "#001f2a",
+              "inverse-on-surface": "#edf1f4",
+              "on-primary-fixed-variant": "#602a92",
+              "error-container": "#ffdad6",
+              "primary-container": "#6a359c",
+              "error": "#ba1a1a",
+              "on-secondary-fixed-variant": "#004e5b",
+              "on-secondary-container": "#006574",
+              "on-surface": "#171c1f",
+              "on-tertiary-container": "#7ecdf0",
+              "inverse-surface": "#2c3134",
+              "surface-tint": "#7945ac"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Work Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-nav {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+      }
+      .sparkle-accent {
+        position: absolute;
+        pointer-events: none;
+      }
+    </style>
+</head>
+<body class="bg-background font-body text-on-background antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-black text-purple-800 dark:text-purple-300 italic font-['Plus_Jakarta_Sans'] tracking-tight">
+                Monica's Miracle Mop
+            </div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-purple-500 font-['Plus_Jakarta_Sans'] font-bold tracking-tight hover:scale-105 transition-transform duration-300" href="#">Services</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-purple-500 font-['Plus_Jakarta_Sans'] font-bold tracking-tight hover:scale-105 transition-transform duration-300" href="#">Pricing</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-purple-500 font-['Plus_Jakarta_Sans'] font-bold tracking-tight hover:scale-105 transition-transform duration-300" href="#">Reviews</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-purple-500 font-['Plus_Jakarta_Sans'] font-bold tracking-tight hover:scale-105 transition-transform duration-300" href="#">About</a>
+</nav>
+<div class="flex items-center gap-6">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-slate-600 hover:scale-105 transition-transform cursor-pointer">calendar_today</span>
+<span class="material-symbols-outlined text-slate-600 hover:scale-105 transition-transform cursor-pointer">person</span>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-bold hover:scale-105 transition-transform duration-300 shadow-lg shadow-primary/20">
+                    Book Now
+                </button>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-20 px-4 max-w-7xl mx-auto">
+<!-- Page Title -->
+<div class="mb-12 relative">
+<h1 class="font-headline text-5xl md:text-6xl font-extrabold text-primary tracking-tight leading-none mb-4">
+                Schedule Your <br/><span class="text-secondary italic">Miracle Clean</span>
+</h1>
+<p class="text-on-surface-variant max-w-md text-lg">Pick a date and time that fits your life. We'll handle the rest with a sparkle.</p>
+<div class="sparkle-accent top-0 -right-4 text-secondary opacity-20">
+<span class="material-symbols-outlined text-6xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Column: Calendar & Timeslots -->
+<div class="lg:col-span-8 space-y-8">
+<!-- Calendar Section -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+<div class="flex justify-between items-center mb-8">
+<h2 class="font-headline text-2xl font-bold text-on-surface">Select Date</h2>
+<div class="flex gap-2">
+<button class="p-2 rounded-full hover:bg-surface-container-low text-secondary transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<span class="font-bold text-lg px-4 flex items-center">October 2024</span>
+<button class="p-2 rounded-full hover:bg-surface-container-low text-secondary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-2 mb-4 text-center">
+<div class="text-on-surface-variant font-bold text-sm">Sun</div>
+<div class="text-on-surface-variant font-bold text-sm">Mon</div>
+<div class="text-on-surface-variant font-bold text-sm">Tue</div>
+<div class="text-on-surface-variant font-bold text-sm">Wed</div>
+<div class="text-on-surface-variant font-bold text-sm">Thu</div>
+<div class="text-on-surface-variant font-bold text-sm">Fri</div>
+<div class="text-on-surface-variant font-bold text-sm">Sat</div>
+</div>
+<div class="grid grid-cols-7 gap-3 text-center">
+<!-- Empty states for previous month -->
+<div class="h-14 flex items-center justify-center text-slate-300">29</div>
+<div class="h-14 flex items-center justify-center text-slate-300">30</div>
+<!-- Current Month -->
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">1</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">2</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">3</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">4</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">5</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">6</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">7</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">8</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">9</button>
+<button class="h-14 flex items-center justify-center rounded-xl bg-primary text-on-primary font-bold shadow-lg shadow-primary/30 transform scale-110">10</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">11</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">12</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">13</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">14</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">15</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">16</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">17</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">18</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">19</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">20</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">21</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">22</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">23</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">24</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">25</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">26</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">27</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">28</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">29</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">30</button>
+<button class="h-14 flex items-center justify-center rounded-xl hover:bg-surface-container-low font-medium">31</button>
+</div>
+</section>
+<!-- Time Slot Section -->
+<section class="space-y-6">
+<h2 class="font-headline text-2xl font-bold text-on-surface">Choose Arrival Window</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Morning -->
+<div class="group relative bg-surface-container-lowest p-6 rounded-xl border-2 border-transparent hover:border-secondary transition-all cursor-pointer shadow-sm">
+<div class="bg-secondary-fixed text-on-secondary-fixed w-10 h-10 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">wb_sunny</span>
+</div>
+<h3 class="font-bold text-lg mb-1">Morning</h3>
+<p class="text-on-surface-variant text-sm">8:00 AM - 11:00 AM</p>
+<div class="absolute top-4 right-4 text-secondary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<!-- Midday -->
+<div class="group relative bg-surface-container-lowest p-6 rounded-xl border-2 border-secondary bg-secondary/5 shadow-md cursor-pointer">
+<div class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center mb-4 scale-110">
+<span class="material-symbols-outlined">sunny</span>
+</div>
+<h3 class="font-bold text-lg mb-1">Midday</h3>
+<p class="text-on-surface-variant text-sm">11:00 AM - 2:00 PM</p>
+<div class="absolute top-4 right-4 text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<!-- Afternoon -->
+<div class="group relative bg-surface-container-lowest p-6 rounded-xl border-2 border-transparent hover:border-secondary transition-all cursor-pointer shadow-sm">
+<div class="bg-tertiary-fixed text-on-tertiary-fixed w-10 h-10 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">dark_mode</span>
+</div>
+<h3 class="font-bold text-lg mb-1">Afternoon</h3>
+<p class="text-on-surface-variant text-sm">2:00 PM - 5:00 PM</p>
+<div class="absolute top-4 right-4 text-secondary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Booking Summary Card -->
+<aside class="lg:col-span-4 sticky top-32">
+<div class="bg-primary-container text-on-primary-container rounded-xl p-8 shadow-xl relative overflow-hidden">
+<!-- Texture/Sparkle in card background -->
+<div class="absolute -top-10 -right-10 opacity-10">
+<span class="material-symbols-outlined text-[160px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<h2 class="font-headline text-2xl font-extrabold mb-8 relative z-10">Booking Summary</h2>
+<div class="space-y-6 relative z-10">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary-container">colors_spark</span>
+<div>
+<p class="text-sm opacity-80">Service Type</p>
+<p class="font-bold text-lg text-white">Deep Magic Clean</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary-container">calendar_month</span>
+<div>
+<p class="text-sm opacity-80">Date &amp; Time</p>
+<p class="font-bold text-lg text-white">Thursday, Oct 10th</p>
+<p class="text-sm text-secondary-container">Midday (11:00 AM - 2:00 PM)</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary-container">location_on</span>
+<div>
+<p class="text-sm opacity-80">Cleaning Address</p>
+<p class="font-bold text-lg text-white">123 Sparkling Way, Suite 4</p>
+</div>
+</div>
+<div class="pt-6 mt-6 border-t border-white/10 space-y-3">
+<div class="flex justify-between items-center text-sm">
+<span>Base Cleaning Fee</span>
+<span>$149.00</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span>Eco-Friendly Supplies</span>
+<span>FREE</span>
+</div>
+<div class="flex justify-between items-center text-xl font-black pt-4">
+<span>Total Price</span>
+<span>$149.00</span>
+</div>
+</div>
+<button class="w-full bg-secondary text-white py-4 rounded-full font-black text-lg hover:scale-[1.02] active:scale-95 transition-all shadow-lg mt-4">
+                            Confirm Appointment
+                        </button>
+<p class="text-center text-xs opacity-60">Cancel for free up to 24h before your booking.</p>
+</div>
+</div>
+<!-- Trust Badge -->
+<div class="mt-6 flex items-center justify-center gap-2 text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+<span class="text-sm">Licensed, Bonded &amp; Insured Professional</span>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full rounded-t-[3rem] mt-20 bg-teal-700 dark:bg-teal-900 text-white">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 px-12 py-16 max-w-7xl mx-auto font-['Work_Sans'] text-sm leading-relaxed">
+<div class="col-span-2 md:col-span-1">
+<div class="text-xl font-extrabold text-white tracking-widest mb-4">M.M.M</div>
+<p class="text-teal-50/80">Premium care for your sanctuary. We bring the sparkle back to your home and life.</p>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-bold text-white mb-2 uppercase tracking-tighter text-xs">Services</h4>
+<a class="text-teal-50/80 hover:text-white hover:translate-x-1 transition-transform duration-200" href="#">Residential Cleaning</a>
+<a class="text-teal-50/80 hover:text-white hover:translate-x-1 transition-transform duration-200" href="#">Deep Clean</a>
+<a class="text-teal-50/80 hover:text-white hover:translate-x-1 transition-transform duration-200" href="#">Move In/Out</a>
+<a class="text-teal-50/80 hover:text-white hover:translate-x-1 transition-transform duration-200" href="#">Office Care</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-bold text-white mb-2 uppercase tracking-tighter text-xs">Support</h4>
+<a class="text-teal-50/80 hover:text-white hover:translate-x-1 transition-transform duration-200" href="#">Privacy Policy</a>
+<a class="text-teal-50/80 hover:text-white hover:translate-x-1 transition-transform duration-200" href="#">Terms of Service</a>
+<a class="text-teal-50/80 hover:text-white hover:translate-x-1 transition-transform duration-200" href="#">Help Center</a>
+</div>
+<div class="col-span-2 md:col-span-1">
+<h4 class="font-bold text-white mb-4 uppercase tracking-tighter text-xs">Stay Sparkly</h4>
+<div class="flex gap-2">
+<input class="bg-white/10 border-none rounded-full px-4 py-2 text-sm w-full focus:ring-2 focus:ring-secondary-container placeholder:text-teal-100/50" placeholder="Email Address" type="text"/>
+<button class="bg-secondary-container text-on-secondary-container p-2 rounded-full">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="pb-12 px-12 text-center text-teal-50/60 text-xs">
+            © 2024 Monica's Miracle Mop. All rights reserved.
+        </div>
+</footer>
+</body></html>
