@@ -134,13 +134,66 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (To be populated by roadmapper) | | |
+| DSGN-01 | Phase 1 | Pending |
+| DSGN-02 | Phase 1 | Pending |
+| DSGN-03 | Phase 1 | Pending |
+| DSGN-04 | Phase 1 | Pending |
+| DSGN-05 | Phase 1 | Pending |
+| DSGN-06 | Phase 1 | Pending |
+| DSGN-07 | Phase 1 | Pending |
+| DSGN-08 | Phase 1 | Pending |
+| DSGN-09 | Phase 1 | Pending |
+| DSGN-10 | Phase 1 | Pending |
+| UK-01 | Phase 1 | Pending |
+| UK-02 | Phase 1 | Pending |
+| UK-03 | Phase 1 | Pending |
+| UK-04 | Phase 1 | Pending |
+| DOCS-01 | Phase 1 | Pending |
+| DOCS-02 | Phase 1 | Pending |
+| BOOK-01 | Phase 2 | Pending |
+| BOOK-02 | Phase 2 | Pending |
+| BOOK-03 | Phase 2 | Pending |
+| BOOK-04 | Phase 2 | Pending |
+| BOOK-05 | Phase 2 | Pending |
+| BOOK-06 | Phase 2 | Pending |
+| BOOK-07 | Phase 2 | Pending |
+| BOOK-08 | Phase 2 | Pending |
+| BOOK-09 | Phase 2 | Pending |
+| BOOK-10 | Phase 2 | Pending |
+| UX-03 | Phase 2 | Pending |
+| UX-04 | Phase 2 | Pending |
+| ADMIN-01 | Phase 3 | Pending |
+| ADMIN-02 | Phase 3 | Pending |
+| ADMIN-03 | Phase 3 | Pending |
+| GCAL-01 | Phase 3 | Pending |
+| GCAL-02 | Phase 3 | Pending |
+| GCAL-03 | Phase 3 | Pending |
+| EMAIL-01 | Phase 3 | Pending |
+| EMAIL-02 | Phase 3 | Pending |
+| EMAIL-03 | Phase 3 | Pending |
+| SERV-01 | Phase 4 | Pending |
+| SERV-02 | Phase 4 | Pending |
+| SERV-03 | Phase 4 | Pending |
+| SERV-04 | Phase 4 | Pending |
+| SEO-01 | Phase 4 | Pending |
+| SEO-02 | Phase 4 | Pending |
+| SEO-03 | Phase 4 | Pending |
+| SEO-04 | Phase 4 | Pending |
+| SEO-05 | Phase 4 | Pending |
+| UX-01 | Phase 5 | Pending |
+| UX-02 | Phase 5 | Pending |
+| WMCP-01 | Phase 6 | Pending |
+| WMCP-02 | Phase 6 | Pending |
+| WMCP-03 | Phase 6 | Pending |
+| WMCP-04 | Phase 6 | Pending |
+| WMCP-05 | Phase 6 | Pending |
+| WMCP-06 | Phase 6 | Pending |
 
 **Coverage:**
-- v1 requirements: 42 total
-- Mapped to phases: 0
-- Unmapped: 42 ⚠️
+- v1 requirements: 54 total (corrected from initial count of 42)
+- Mapped to phases: 54
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-03-23*
-*Last updated: 2026-03-23 after initial definition*
+*Last updated: 2026-03-23 — traceability populated by roadmapper*
