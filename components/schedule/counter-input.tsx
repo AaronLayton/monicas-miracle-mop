@@ -27,7 +27,7 @@ export function CounterInput({
     <div
       data-slot="counter-input"
       className={cn(
-        "flex items-center justify-between gap-3 rounded-xl border border-border bg-card px-4 py-3",
+        "flex items-center justify-between gap-3 rounded-xl border-0 bg-muted/50 px-4 py-3",
         className
       )}
     >

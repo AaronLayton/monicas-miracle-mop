@@ -21,7 +21,7 @@ export function Nav() {
         "antialiased tracking-[-0.02em]"
       )}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-8 py-4">
         {/* Logo */}
         <Link
           href="/"

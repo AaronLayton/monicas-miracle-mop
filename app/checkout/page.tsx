@@ -206,10 +206,10 @@ export default function CheckoutPage() {
                   rows={4}
                   placeholder="e.g. Key is under the doormat, please avoid the conservatory"
                   className={cn(
-                    "w-full rounded-xl border border-input bg-transparent px-4 py-3 text-base",
+                    "w-full rounded-xl border-0 bg-muted/50 px-4 py-3 text-base",
                     "placeholder:text-muted-foreground resize-none",
                     "transition-colors outline-none",
-                    "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
+                    "focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:bg-background",
                     "disabled:pointer-events-none disabled:opacity-50",
                     "md:text-sm"
                   )}
