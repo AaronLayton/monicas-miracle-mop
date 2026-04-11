@@ -9,23 +9,23 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Design Conversion
 
-- [ ] **DSGN-01**: Design-3 colour tokens mapped to Tailwind CSS v4 theme variables with Plus Jakarta Sans font
-- [ ] **DSGN-02**: Shared Nav component extracted from design-3 (logo, nav links, Book Now CTA, mobile menu)
-- [ ] **DSGN-03**: Shared Footer component extracted from design-3 (service links, company links, support links, copyright)
-- [ ] **DSGN-04**: Homepage converted to Next.js with hero, pricing cards, "Monica Difference" section, testimonials, and CTA
-- [ ] **DSGN-05**: Services page converted with service selection cards, add-on grid, and booking summary sidebar
-- [ ] **DSGN-06**: Schedule page created (design-1 UX in design-3 style) with home details, calendar, arrival window
-- [ ] **DSGN-07**: Checkout page converted with contact form, address form, and booking summary
-- [ ] **DSGN-08**: All Google-hosted images replaced with local placeholders
-- [ ] **DSGN-09**: All Material Symbols replaced with Lucide icons
-- [ ] **DSGN-10**: Visual accuracy verified against design-3 screenshots via browser comparison
+- [x] **DSGN-01**: Design-3 colour tokens mapped to Tailwind CSS v4 theme variables with Plus Jakarta Sans font
+- [x] **DSGN-02**: Shared Nav component extracted from design-3 (logo, nav links, Book Now CTA, mobile menu)
+- [x] **DSGN-03**: Shared Footer component extracted from design-3 (service links, company links, support links, copyright)
+- [x] **DSGN-04**: Homepage converted to Next.js with hero, pricing cards, "Monica Difference" section, testimonials, and CTA
+- [x] **DSGN-05**: Services page converted with service selection cards, add-on grid, and booking summary sidebar
+- [x] **DSGN-06**: Schedule page created (design-1 UX in design-3 style) with home details, calendar, arrival window
+- [x] **DSGN-07**: Checkout page converted with contact form, address form, and booking summary
+- [x] **DSGN-08**: All Google-hosted images replaced with local placeholders
+- [x] **DSGN-09**: All Material Symbols replaced with Lucide icons
+- [x] **DSGN-10**: Visual accuracy verified against design-3 screenshots via browser comparison
 
 ### UK Localisation
 
-- [ ] **UK-01**: All pricing displayed in GBP using Kasey's real prices (£20/hr standard, £100-200 deep clean)
-- [ ] **UK-02**: UK English throughout all copy (colour, organisation, etc.)
-- [ ] **UK-03**: UK address format in forms (postcode, not ZIP; no state field)
-- [ ] **UK-04**: Terms & conditions page reflecting Kasey's cancellation policy and payment terms
+- [x] **UK-01**: All pricing displayed in GBP using Kasey's real prices (£20/hr standard, £100-200 deep clean)
+- [x] **UK-02**: UK English throughout all copy (colour, organisation, etc.)
+- [x] **UK-03**: UK address format in forms (postcode, not ZIP; no state field)
+- [x] **UK-04**: Terms & conditions page reflecting Kasey's cancellation policy and payment terms
 
 ### Booking Flow
 
@@ -134,20 +134,20 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DSGN-01 | Phase 1 | Pending |
-| DSGN-02 | Phase 1 | Pending |
-| DSGN-03 | Phase 1 | Pending |
-| DSGN-04 | Phase 1 | Pending |
-| DSGN-05 | Phase 1 | Pending |
-| DSGN-06 | Phase 1 | Pending |
-| DSGN-07 | Phase 1 | Pending |
-| DSGN-08 | Phase 1 | Pending |
-| DSGN-09 | Phase 1 | Pending |
-| DSGN-10 | Phase 1 | Pending |
-| UK-01 | Phase 1 | Pending |
-| UK-02 | Phase 1 | Pending |
-| UK-03 | Phase 1 | Pending |
-| UK-04 | Phase 1 | Pending |
+| DSGN-01 | Phase 1 | Complete |
+| DSGN-02 | Phase 1 | Complete |
+| DSGN-03 | Phase 1 | Complete |
+| DSGN-04 | Phase 1 | Complete |
+| DSGN-05 | Phase 1 | Complete |
+| DSGN-06 | Phase 1 | Complete |
+| DSGN-07 | Phase 1 | Complete |
+| DSGN-08 | Phase 1 | Complete |
+| DSGN-09 | Phase 1 | Complete |
+| DSGN-10 | Phase 1 | Complete |
+| UK-01 | Phase 1 | Complete |
+| UK-02 | Phase 1 | Complete |
+| UK-03 | Phase 1 | Complete |
+| UK-04 | Phase 1 | Complete |
 | DOCS-01 | Phase 1 | Pending |
 | DOCS-02 | Phase 1 | Pending |
 | BOOK-01 | Phase 2 | Pending |

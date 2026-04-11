@@ -44,7 +44,7 @@ Plans:
 - [x] 01-08-PLAN.md — AGENTS.md and CLAUDE.md documentation
 - [x] 01-09-PLAN.md — ~~Gap closure~~ SUPERSEDED by 01-11
 - [x] 01-10-PLAN.md — ~~Gap closure~~ SUPERSEDED by 01-11
-- [ ] 01-11-PLAN.md — Faithful page-by-page rewrite from design-3 HTML
+- [x] 01-11-PLAN.md — Faithful page-by-page rewrite from design-3 HTML
 
 ### Phase 2: Booking Flow
 **Goal**: A customer can complete a full booking from service selection through to a confirmation page with a job reference number, with their selections preserved across all four steps
