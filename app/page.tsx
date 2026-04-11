@@ -30,7 +30,7 @@ import { cn } from "@/lib/utils"
 
 function HeroSection() {
   return (
-    <section className="relative py-20 md:py-28 flex items-center overflow-hidden px-6 md:px-8">
+    <section className="relative min-h-[85vh] py-20 md:py-28 flex items-center overflow-hidden px-6 md:px-8">
       <div className="relative z-10 mx-auto w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left: copy */}
         <div className="z-10 space-y-8 max-w-2xl">
@@ -56,7 +56,7 @@ function HeroSection() {
               href="/services"
               className={cn(
                 "inline-flex items-center justify-center gap-2",
-                "rounded-full bg-primary px-8 py-4",
+                "rounded-full bg-primary-container px-8 py-4",
                 "text-lg font-bold text-white",
                 "hover:shadow-xl hover:shadow-primary/25",
                 "transition-all duration-300 active:scale-95"
@@ -236,8 +236,8 @@ function ServiceCard({
           className={cn(
             "block w-full py-4 rounded-full text-center font-bold transition-all",
             featured
-              ? "bg-white text-primary hover:shadow-lg"
-              : "border-2 border-primary text-primary hover:bg-primary hover:text-white"
+              ? "bg-white text-primary-container hover:shadow-lg"
+              : "border-2 border-primary-container text-primary-container hover:bg-primary-container hover:text-white"
           )}
         >
           Select Plan
@@ -559,12 +559,12 @@ function CtaSection() {
 
 export default function HomePage() {
   return (
-    <main className="pt-20">
+    <>
       <HeroSection />
       <PricingSection />
       <MonicaDifferenceSection />
       <TestimonialsSection />
       <CtaSection />
-    </main>
+    </>
   )
 }
