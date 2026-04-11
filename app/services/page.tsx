@@ -113,14 +113,14 @@ export default function ServicesPage() {
               Choose Your Service
             </h2>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-6 mt-4">
               {services.map((service) => {
                 const Icon = service.icon
                 return (
                   <Card
                     key={service.name}
                     className={cn(
-                      "relative transition-all duration-300 cursor-pointer hover:shadow-lg",
+                      "relative overflow-visible transition-all duration-300 cursor-pointer hover:shadow-lg",
                       service.highlight
                         ? "border-2 border-primary shadow-[0_20px_50px_rgba(81,25,131,0.08)]"
                         : "hover:border-secondary"

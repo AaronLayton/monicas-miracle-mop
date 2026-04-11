@@ -49,7 +49,7 @@ export function MobileNavToggle() {
               <Link
                 href="/services"
                 onClick={() => setOpen(false)}
-                className="block w-full rounded-full bg-[--primary-container] px-6 py-2.5 text-center text-sm font-semibold text-white transition-all hover:opacity-80 active:scale-95 shadow-lg"
+                className="block w-full rounded-full bg-primary-container px-6 py-2.5 text-center text-sm font-semibold text-white transition-all hover:opacity-80 active:scale-95 shadow-lg"
               >
                 Book Now
               </Link>

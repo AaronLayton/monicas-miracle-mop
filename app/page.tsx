@@ -84,7 +84,7 @@ function HeroSection() {
           {/* Background glow blobs */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -top-12 -right-12 w-64 h-64 rounded-full bg-[--primary-soft] blur-3xl opacity-50"
+            className="pointer-events-none absolute -top-12 -right-12 w-64 h-64 rounded-full bg-primary-soft blur-3xl opacity-50"
           />
           <div
             aria-hidden="true"
@@ -324,7 +324,7 @@ function MonicaDifferenceSection() {
   const differencePoints = [
     {
       icon: <ShieldCheck className="size-6" aria-hidden="true" />,
-      iconBg: "bg-[--primary-soft]",
+      iconBg: "bg-primary-soft",
       iconColour: "text-primary",
       title: "Vetted Professionals",
       body: "Every Miracle Mop technician undergoes a 5-step background check and intensive \"Prism Training\".",
@@ -338,7 +338,7 @@ function MonicaDifferenceSection() {
     },
     {
       icon: <Award className="size-6" aria-hidden="true" />,
-      iconBg: "bg-[--primary-soft]",
+      iconBg: "bg-primary-soft",
       iconColour: "text-primary",
       title: "Satisfaction Guaranteed",
       body: "Not sparkling enough? We'll return within 24 hours to make it right. No questions asked.",
@@ -481,7 +481,7 @@ function TestimonialsSection() {
   ]
 
   return (
-    <section className="py-24 px-6 md:px-8 bg-[--primary-soft]/30">
+    <section className="py-24 px-6 md:px-8 bg-primary-soft/30">
       <div className="mx-auto max-w-7xl">
         <h2 className="mb-16 text-center text-3xl md:text-5xl font-bold tracking-tight text-primary">
           Voices of Clarity
@@ -505,7 +505,7 @@ function CtaSection() {
   return (
     <section className="py-24 px-6 md:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="bg-gradient-to-br from-[--primary-container] to-primary p-12 md:p-20 rounded-[3rem] text-center text-white relative overflow-hidden shadow-2xl">
+        <div className="bg-gradient-to-br from-primary-container to-primary p-12 md:p-20 rounded-[3rem] text-center text-white relative overflow-hidden shadow-2xl">
           {/* Decorative overlay */}
           <div
             aria-hidden="true"

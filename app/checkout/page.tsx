@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function CheckoutPage() {
   return (
-    <main className="pt-24 pb-20 px-4 md:px-8 max-w-7xl mx-auto">
+    <div className="pt-8 pb-20 px-4 md:px-8 max-w-7xl mx-auto">
       {/* Page Header */}
       <header className="mb-12">
         <h1 className="text-4xl font-extrabold text-primary tracking-tight mb-2">
@@ -28,7 +28,7 @@ export default function CheckoutPage() {
           {/* Contact Information */}
           <section>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-full bg-[--primary-soft] flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-primary-soft flex items-center justify-center">
                 <User className="size-5 text-primary" aria-hidden="true" />
               </div>
               <h2 className="text-xl font-bold text-foreground">Contact Info</h2>
@@ -206,7 +206,7 @@ export default function CheckoutPage() {
           {/* Special Notes — plain section, no Card wrapper */}
           <section>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-full bg-[--primary-soft] flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-primary-soft flex items-center justify-center">
                 <MessageSquare
                   className="size-5 text-primary"
                   aria-hidden="true"
@@ -244,6 +244,6 @@ export default function CheckoutPage() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   )
 }
