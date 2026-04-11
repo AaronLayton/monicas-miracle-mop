@@ -30,7 +30,7 @@ import { cn } from "@/lib/utils"
 
 function HeroSection() {
   return (
-    <section className="relative min-h-[921px] flex items-center overflow-hidden px-6 md:px-8">
+    <section className="relative py-20 md:py-28 flex items-center overflow-hidden px-6 md:px-8">
       <div className="relative z-10 mx-auto w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left: copy */}
         <div className="z-10 space-y-8 max-w-2xl">
@@ -56,7 +56,7 @@ function HeroSection() {
               href="/services"
               className={cn(
                 "inline-flex items-center justify-center gap-2",
-                "rounded-full bg-[--primary-container] px-8 py-4",
+                "rounded-full bg-primary px-8 py-4",
                 "text-lg font-bold text-white",
                 "hover:shadow-xl hover:shadow-primary/25",
                 "transition-all duration-300 active:scale-95"
@@ -69,7 +69,7 @@ function HeroSection() {
               href="/services"
               className={cn(
                 "inline-flex items-center justify-center",
-                "rounded-full bg-accent text-accent-foreground px-8 py-4",
+                "rounded-full border-2 border-secondary text-secondary px-8 py-4",
                 "text-lg font-bold",
                 "transition-all duration-300 hover:opacity-90 active:scale-95"
               )}
@@ -80,7 +80,7 @@ function HeroSection() {
         </div>
 
         {/* Right: hero image with trust bubble */}
-        <div className="relative lg:h-[600px]">
+        <div className="relative">
           {/* Background glow blobs */}
           <div
             aria-hidden="true"
@@ -91,7 +91,7 @@ function HeroSection() {
             className="pointer-events-none absolute -bottom-12 -left-12 w-80 h-80 rounded-full bg-accent blur-3xl opacity-40"
           />
 
-          <div className="relative h-full w-full rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-700 bg-muted min-h-[380px]">
+          <div className="relative aspect-[4/5] w-full rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-700 bg-muted">
             <Image
               src="/images/hero-clean-home.jpg"
               alt="Pristine living room"
@@ -152,7 +152,7 @@ function ServiceCard({
       className={cn(
         "relative flex flex-col rounded-[2rem] p-10 transition-all duration-500",
         featured
-          ? "bg-[--primary-container] text-white scale-105 shadow-2xl shadow-primary/20 z-10"
+          ? "bg-primary text-white scale-105 shadow-2xl shadow-primary/20 z-10"
           : "bg-card group hover:-translate-y-2"
       )}
     >
@@ -236,8 +236,8 @@ function ServiceCard({
           className={cn(
             "block w-full py-4 rounded-full text-center font-bold transition-all",
             featured
-              ? "bg-white text-[--primary-container] hover:shadow-lg"
-              : "border-2 border-[--primary-container] text-[--primary-container] hover:bg-[--primary-container] hover:text-white"
+              ? "bg-white text-primary hover:shadow-lg"
+              : "border-2 border-primary text-primary hover:bg-primary hover:text-white"
           )}
         >
           Select Plan
