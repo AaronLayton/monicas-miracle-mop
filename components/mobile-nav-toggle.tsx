@@ -9,8 +9,8 @@ import { cn } from "@/lib/utils"
 const navLinks: { href: Route; label: string }[] = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
-  { href: "/schedule", label: "Schedule" },
-  { href: "/checkout", label: "Checkout" },
+  { href: "/schedule" as Route, label: "Schedule" },
+  { href: "/checkout" as Route, label: "Checkout" },
 ]
 
 export function MobileNavToggle() {

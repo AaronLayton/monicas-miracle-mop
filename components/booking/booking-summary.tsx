@@ -1,8 +1,8 @@
 // Phase 1: Static placeholder data. Phase 2 will connect to BookingContext.
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import type { Route } from "next"
 import { ShoppingBasket, ArrowRight, ShieldCheck, ThumbsUp } from "lucide-react"
 
 interface BookingSummaryProps {
@@ -69,15 +69,18 @@ export function BookingSummary({ className }: BookingSummaryProps) {
       </div>
 
       {/* CTA */}
-      <Button
-        className="w-full rounded-full py-6 text-base font-bold"
-        asChild
+      <Link
+        href={"/schedule" as Route}
+        className={cn(
+          "flex w-full items-center justify-center gap-2 rounded-full py-4 px-6",
+          "bg-primary text-primary-foreground font-bold text-base",
+          "hover:shadow-[0_10px_20px_rgba(81,25,131,0.2)] transition-all duration-200",
+          "active:scale-[0.98]"
+        )}
       >
-        <Link href="/schedule" className="flex items-center justify-center gap-2">
-          Continue to Schedule
-          <ArrowRight className="size-4" aria-hidden="true" />
-        </Link>
-      </Button>
+        Continue to Schedule
+        <ArrowRight className="size-4" aria-hidden="true" />
+      </Link>
 
       <p className="text-[10px] text-center text-muted-foreground mt-6 uppercase tracking-widest font-bold">
         Secure 256-bit Encrypted Checkout
