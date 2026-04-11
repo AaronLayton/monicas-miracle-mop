@@ -1,11 +1,6 @@
 import { Metadata } from "next"
-import { User, Mail, Phone, MapPin, MessageSquare } from "lucide-react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
+import { User, MapPin, MessageSquare, Phone } from "lucide-react"
 import { BookingSummary } from "@/components/booking/booking-summary"
-import { cn } from "@/lib/utils"
 
 export const metadata: Metadata = {
   title: "Checkout | Monica's Miracle Mop",
@@ -15,226 +10,238 @@ export const metadata: Metadata = {
 
 export default function CheckoutPage() {
   return (
-    <main className="pt-28 pb-20 px-6 max-w-7xl mx-auto">
+    <main className="pt-24 pb-20 px-4 md:px-8 max-w-7xl mx-auto">
       {/* Page Header */}
       <header className="mb-12">
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-primary mb-4">
+        <h1 className="text-4xl font-extrabold text-primary tracking-tight mb-2">
           Checkout
         </h1>
-        <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed">
+        <p className="text-muted-foreground font-medium">
           Review your details and confirm your magical cleaning experience.
         </p>
       </header>
 
       {/* Two-column layout: forms + sidebar */}
-      <div className="grid lg:grid-cols-[1fr_380px] gap-8 items-start">
-
-        {/* Left column: Contact + Address + Notes + Confirm */}
-        <div className="space-y-8">
-
-          {/* Section 1: Contact Details */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-xl font-bold text-foreground">
-                <span className="w-10 h-10 rounded-full bg-[--primary-soft] flex items-center justify-center shrink-0">
-                  <User className="size-5 text-primary" aria-hidden="true" />
-                </span>
-                Contact Details
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Full Name — spans full width */}
-                <div className="md:col-span-2 space-y-2">
-                  <Label htmlFor="full-name" className="flex items-center gap-2">
-                    <User className="size-3.5 text-muted-foreground" aria-hidden="true" />
-                    Full Name
-                  </Label>
-                  <Input
-                    id="full-name"
-                    type="text"
-                    placeholder="e.g. Jane Smith"
-                    className="h-11 rounded-xl px-4"
-                    autoComplete="name"
-                  />
-                </div>
-
-                {/* Email */}
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="flex items-center gap-2">
-                    <Mail className="size-3.5 text-muted-foreground" aria-hidden="true" />
-                    Email Address
-                  </Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="e.g. jane@example.co.uk"
-                    className="h-11 rounded-xl px-4"
-                    autoComplete="email"
-                  />
-                </div>
-
-                {/* Phone */}
-                <div className="space-y-2">
-                  <Label htmlFor="phone" className="flex items-center gap-2">
-                    <Phone className="size-3.5 text-muted-foreground" aria-hidden="true" />
-                    Phone Number
-                  </Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="e.g. 07700 900000"
-                    className="h-11 rounded-xl px-4"
-                    autoComplete="tel"
-                  />
-                </div>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        {/* Left Column: Forms */}
+        <div className="lg:col-span-7 space-y-10">
+          {/* Contact Information */}
+          <section>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-full bg-[--primary-soft] flex items-center justify-center">
+                <User className="size-5 text-primary" aria-hidden="true" />
               </div>
-            </CardContent>
-          </Card>
+              <h2 className="text-xl font-bold text-foreground">Contact Info</h2>
+            </div>
 
-          {/* Section 2: Service Address (UK format per D-12) */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-xl font-bold text-foreground">
-                <span className="w-10 h-10 rounded-full bg-accent/30 flex items-center justify-center shrink-0">
-                  <MapPin className="size-5 text-secondary" aria-hidden="true" />
-                </span>
-                Service Address
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {/* Address Line 1 — full width */}
-                <div className="space-y-2">
-                  <Label htmlFor="address-line-1">
-                    Address Line 1{" "}
-                    <span className="text-muted-foreground font-normal">(required)</span>
-                  </Label>
-                  <Input
-                    id="address-line-1"
-                    type="text"
-                    placeholder="e.g. 42 Oak Avenue"
-                    className="h-11 rounded-xl px-4"
-                    autoComplete="address-line1"
-                  />
-                </div>
-
-                {/* Address Line 2 — full width */}
-                <div className="space-y-2">
-                  <Label htmlFor="address-line-2">
-                    Address Line 2{" "}
-                    <span className="text-muted-foreground font-normal">(optional)</span>
-                  </Label>
-                  <Input
-                    id="address-line-2"
-                    type="text"
-                    placeholder="e.g. Flat 3"
-                    className="h-11 rounded-xl px-4"
-                    autoComplete="address-line2"
-                  />
-                </div>
-
-                {/* Town/City + County side by side */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="town-city">
-                      Town/City{" "}
-                      <span className="text-muted-foreground font-normal">(required)</span>
-                    </Label>
-                    <Input
-                      id="town-city"
-                      type="text"
-                      placeholder="e.g. Manchester"
-                      className="h-11 rounded-xl px-4"
-                      autoComplete="address-level2"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="county">
-                      County{" "}
-                      <span className="text-muted-foreground font-normal">(optional)</span>
-                    </Label>
-                    <Input
-                      id="county"
-                      type="text"
-                      placeholder="e.g. Greater Manchester"
-                      className="h-11 rounded-xl px-4"
-                      autoComplete="address-level1"
-                    />
-                  </div>
-                </div>
-
-                {/* Postcode — half width */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="postcode">
-                      Postcode{" "}
-                      <span className="text-muted-foreground font-normal">(required)</span>
-                    </Label>
-                    <Input
-                      id="postcode"
-                      type="text"
-                      placeholder="e.g. M1 2AB"
-                      className="h-11 rounded-xl px-4 uppercase"
-                      autoComplete="postal-code"
-                    />
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Section 3: Special Notes */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-xl font-bold text-foreground">
-                <span className="w-10 h-10 rounded-full bg-muted flex items-center justify-center shrink-0">
-                  <MessageSquare className="size-5 text-muted-foreground" aria-hidden="true" />
-                </span>
-                Special Notes
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-2">
-                <Label htmlFor="special-notes">
-                  Additional instructions{" "}
-                  <span className="text-muted-foreground font-normal">(optional)</span>
-                </Label>
-                <textarea
-                  id="special-notes"
-                  rows={4}
-                  placeholder="e.g. Key is under the doormat, please avoid the conservatory"
-                  className={cn(
-                    "w-full rounded-xl border-0 bg-muted/50 px-4 py-3 text-base",
-                    "placeholder:text-muted-foreground resize-none",
-                    "transition-colors outline-none",
-                    "focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:bg-background",
-                    "disabled:pointer-events-none disabled:opacity-50",
-                    "md:text-sm"
-                  )}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-1">
+                <label
+                  htmlFor="first-name"
+                  className="text-xs font-bold uppercase tracking-wider text-muted-foreground px-1"
+                >
+                  First Name
+                </label>
+                <input
+                  id="first-name"
+                  type="text"
+                  placeholder="Monica"
+                  autoComplete="given-name"
+                  className="w-full bg-muted/50 border-0 rounded-xl px-4 py-3 focus:ring-2 focus:ring-secondary/20 transition-all outline-none"
                 />
               </div>
-            </CardContent>
-          </Card>
 
-          {/* Confirm Booking Button */}
-          {/* Phase 2: Connect to booking submission Server Action */}
-          <Button
-            className={cn(
-              "w-full bg-[--primary-container] text-white rounded-full py-3 text-lg font-semibold",
-              "hover:opacity-90 hover:shadow-[0_10px_20px_rgba(81,25,131,0.2)]",
-              "active:scale-[0.98] transition-all duration-200"
-            )}
-            size="lg"
-          >
-            Confirm Booking
-          </Button>
+              <div className="space-y-1">
+                <label
+                  htmlFor="last-name"
+                  className="text-xs font-bold uppercase tracking-wider text-muted-foreground px-1"
+                >
+                  Last Name
+                </label>
+                <input
+                  id="last-name"
+                  type="text"
+                  placeholder="Geller"
+                  autoComplete="family-name"
+                  className="w-full bg-muted/50 border-0 rounded-xl px-4 py-3 focus:ring-2 focus:ring-secondary/20 transition-all outline-none"
+                />
+              </div>
+
+              <div className="md:col-span-2 space-y-1">
+                <label
+                  htmlFor="email"
+                  className="text-xs font-bold uppercase tracking-wider text-muted-foreground px-1"
+                >
+                  Email Address
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="clean@miraclemop.com"
+                  autoComplete="email"
+                  className="w-full bg-muted/50 border-0 rounded-xl px-4 py-3 focus:ring-2 focus:ring-secondary/20 transition-all outline-none"
+                />
+              </div>
+
+              <div className="md:col-span-2 space-y-1">
+                <label
+                  htmlFor="phone"
+                  className="text-xs font-bold uppercase tracking-wider text-muted-foreground px-1"
+                >
+                  Phone Number
+                </label>
+                <input
+                  id="phone"
+                  type="tel"
+                  placeholder="07700 900000"
+                  autoComplete="tel"
+                  className="w-full bg-muted/50 border-0 rounded-xl px-4 py-3 focus:ring-2 focus:ring-secondary/20 transition-all outline-none"
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* Service Address (UK format) */}
+          <section>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center">
+                <MapPin className="size-5 text-secondary" aria-hidden="true" />
+              </div>
+              <h2 className="text-xl font-bold text-foreground">
+                Service Address
+              </h2>
+            </div>
+
+            <div className="space-y-6">
+              <div className="space-y-1">
+                <label
+                  htmlFor="address-line-1"
+                  className="text-xs font-bold uppercase tracking-wider text-muted-foreground px-1"
+                >
+                  Address Line 1
+                </label>
+                <input
+                  id="address-line-1"
+                  type="text"
+                  placeholder="42 Oak Avenue"
+                  autoComplete="address-line1"
+                  className="w-full bg-muted/50 border-0 rounded-xl px-4 py-3 focus:ring-2 focus:ring-secondary/20 transition-all outline-none"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label
+                  htmlFor="address-line-2"
+                  className="text-xs font-bold uppercase tracking-wider text-muted-foreground px-1"
+                >
+                  Address Line 2{" "}
+                  <span className="normal-case tracking-normal font-normal">
+                    (optional)
+                  </span>
+                </label>
+                <input
+                  id="address-line-2"
+                  type="text"
+                  placeholder="Flat 3"
+                  autoComplete="address-line2"
+                  className="w-full bg-muted/50 border-0 rounded-xl px-4 py-3 focus:ring-2 focus:ring-secondary/20 transition-all outline-none"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                <div className="space-y-1">
+                  <label
+                    htmlFor="town-city"
+                    className="text-xs font-bold uppercase tracking-wider text-muted-foreground px-1"
+                  >
+                    Town / City
+                  </label>
+                  <input
+                    id="town-city"
+                    type="text"
+                    placeholder="Manchester"
+                    autoComplete="address-level2"
+                    className="w-full bg-muted/50 border-0 rounded-xl px-4 py-3 focus:ring-2 focus:ring-secondary/20 transition-all outline-none"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label
+                    htmlFor="county"
+                    className="text-xs font-bold uppercase tracking-wider text-muted-foreground px-1"
+                  >
+                    County{" "}
+                    <span className="normal-case tracking-normal font-normal">
+                      (optional)
+                    </span>
+                  </label>
+                  <input
+                    id="county"
+                    type="text"
+                    placeholder="Greater Manchester"
+                    autoComplete="address-level1"
+                    className="w-full bg-muted/50 border-0 rounded-xl px-4 py-3 focus:ring-2 focus:ring-secondary/20 transition-all outline-none"
+                  />
+                </div>
+
+                <div className="col-span-2 md:col-span-1 space-y-1">
+                  <label
+                    htmlFor="postcode"
+                    className="text-xs font-bold uppercase tracking-wider text-muted-foreground px-1"
+                  >
+                    Postcode
+                  </label>
+                  <input
+                    id="postcode"
+                    type="text"
+                    placeholder="M1 2AB"
+                    autoComplete="postal-code"
+                    className="w-full bg-muted/50 border-0 rounded-xl px-4 py-3 focus:ring-2 focus:ring-secondary/20 transition-all outline-none uppercase"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Special Notes — plain section, no Card wrapper */}
+          <section>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-full bg-[--primary-soft] flex items-center justify-center">
+                <MessageSquare
+                  className="size-5 text-primary"
+                  aria-hidden="true"
+                />
+              </div>
+              <h2 className="text-xl font-bold text-foreground">
+                Special Notes
+              </h2>
+            </div>
+
+            <div className="space-y-1">
+              <label
+                htmlFor="special-notes"
+                className="text-xs font-bold uppercase tracking-wider text-muted-foreground px-1"
+              >
+                Additional Instructions{" "}
+                <span className="normal-case tracking-normal font-normal">
+                  (optional)
+                </span>
+              </label>
+              <textarea
+                id="special-notes"
+                rows={4}
+                placeholder="e.g. Key is under the doormat, please avoid the conservatory"
+                className="w-full bg-muted/50 border-0 rounded-xl px-4 py-3 focus:ring-2 focus:ring-secondary/20 transition-all outline-none resize-none"
+              />
+            </div>
+          </section>
         </div>
 
-        {/* Right column: Booking Summary sidebar */}
-        <div className="sticky top-24">
-          <BookingSummary />
+        {/* Right Column: Booking Summary */}
+        <div className="lg:col-span-5">
+          <div className="sticky top-28">
+            <BookingSummary />
+          </div>
         </div>
       </div>
     </main>
