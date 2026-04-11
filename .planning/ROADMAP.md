@@ -42,8 +42,9 @@ Plans:
 - [x] 01-06-PLAN.md — Checkout page conversion
 - [x] 01-07-PLAN.md — UK localisation and Terms page
 - [x] 01-08-PLAN.md — AGENTS.md and CLAUDE.md documentation
-- [ ] 01-09-PLAN.md — Gap closure: Nav links, Footer background, container consistency
-- [ ] 01-10-PLAN.md — Gap closure: Homepage card colour, Services buttons/icons, Checkout sidebar blobs
+- [x] 01-09-PLAN.md — ~~Gap closure~~ SUPERSEDED by 01-11
+- [x] 01-10-PLAN.md — ~~Gap closure~~ SUPERSEDED by 01-11
+- [ ] 01-11-PLAN.md — Faithful page-by-page rewrite from design-3 HTML
 
 ### Phase 2: Booking Flow
 **Goal**: A customer can complete a full booking from service selection through to a confirmation page with a job reference number, with their selections preserved across all four steps
