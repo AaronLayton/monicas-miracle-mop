@@ -7,27 +7,38 @@ import { ShoppingBasket, ArrowRight, ShieldCheck, ThumbsUp, Clock } from "lucide
 
 interface BookingSummaryProps {
   className?: string
+  /** When true, trust badges render outside the glass-card (services page layout) */
+  showTrustBadgesOutside?: boolean
+  /** When true, decorative blobs are hidden (services page has no blobs) */
+  hideBlobs?: boolean
 }
 
-export function BookingSummary({ className }: BookingSummaryProps) {
+export function BookingSummary({ className, showTrustBadgesOutside = false, hideBlobs = false }: BookingSummaryProps) {
   return (
     <aside
       data-slot="booking-summary"
+      className={cn(showTrustBadgesOutside ? "" : "space-y-6", className)}
+    >
+    <div
       className={cn(
-        "relative overflow-hidden glass-card-sidebar rounded-3xl p-8 border border-white/40",
+        "relative overflow-hidden glass-card-sidebar p-8 border border-white/40",
         "shadow-[0_40px_80px_-20px_rgba(81,25,131,0.1)]",
-        className
+        showTrustBadgesOutside ? "rounded-2xl" : "rounded-3xl"
       )}
     >
-      {/* Decorative background blobs */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-12 -right-12 w-32 h-32 rounded-full bg-accent/20 blur-3xl"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-12 -left-12 w-32 h-32 rounded-full bg-primary-container/10 blur-3xl"
-      />
+      {/* Decorative background blobs (hidden on services page) */}
+      {!hideBlobs && (
+        <>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -top-12 -right-12 w-32 h-32 rounded-full bg-accent/20 blur-3xl"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -bottom-12 -left-12 w-32 h-32 rounded-full bg-primary-container/10 blur-3xl"
+          />
+        </>
+      )}
 
       <div className="relative z-10">
         {/* Heading */}
@@ -112,7 +123,24 @@ export function BookingSummary({ className }: BookingSummaryProps) {
           Secure 256-bit Encrypted Checkout
         </p>
 
-        {/* Trust badges */}
+        {/* Trust badges (inside card when not showing outside) */}
+        {!showTrustBadgesOutside && (
+          <div className="mt-6 grid grid-cols-2 gap-4">
+            <div className="flex items-center gap-2 text-xs text-muted-foreground font-medium">
+              <ShieldCheck className="size-4 text-secondary shrink-0" aria-hidden="true" />
+              Fully Insured
+            </div>
+            <div className="flex items-center gap-2 text-xs text-muted-foreground font-medium">
+              <ThumbsUp className="size-4 text-secondary shrink-0" aria-hidden="true" />
+              Miracle Guarantee
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+
+      {/* Trust badges (outside card on services page) */}
+      {showTrustBadgesOutside && (
         <div className="mt-6 grid grid-cols-2 gap-4">
           <div className="flex items-center gap-2 text-xs text-muted-foreground font-medium">
             <ShieldCheck className="size-4 text-secondary shrink-0" aria-hidden="true" />
@@ -123,7 +151,7 @@ export function BookingSummary({ className }: BookingSummaryProps) {
             Miracle Guarantee
           </div>
         </div>
-      </div>
+      )}
     </aside>
   )
 }

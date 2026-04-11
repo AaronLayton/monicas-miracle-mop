@@ -9,8 +9,10 @@ import {
   AppWindow,
   WashingMachine,
   Layers,
+  CheckCircle2,
+  ShieldCheck,
+  ThumbsUp,
 } from "lucide-react"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { BookingSummary } from "@/components/booking/booking-summary"
 import { cn } from "@/lib/utils"
 
@@ -25,67 +27,49 @@ const services = [
     icon: Sparkles,
     name: "Standard Clean",
     description:
-      "Perfect for maintaining a tidy, fresh home on a regular basis. Ideal for weekly or fortnightly visits to keep things sparkling.",
-    price: "From £20/hr",
-    badge: null,
-    highlight: false,
+      "Perfect for maintaining a tidy, fresh home on a regular basis.",
+    price: "From \u00a320/hr",
+    badge: "Popular",
+    badgeStyle: "bg-accent text-accent-foreground",
+    selected: false,
+    iconColour: "text-secondary",
   },
   {
     icon: Droplets,
     name: "Deep Clean",
     description:
-      "A high-intensity refresh for homes that need extra attention. We go beyond the surface to restore every corner.",
-    price: "From £100",
-    badge: "Most Popular",
-    highlight: true,
+      "A high-intensity refresh for homes that need extra attention.",
+    price: "From \u00a3100",
+    badge: "Best Value",
+    badgeStyle: "bg-primary text-white",
+    selected: true,
+    iconColour: "text-primary",
   },
   {
     icon: Truck,
     name: "Move-In/Out Clean",
     description:
-      "Detailed sanitisation for empty homes ready for new beginnings. Perfect for end-of-tenancy or moving into your new place.",
-    price: "From £150",
+      "Detailed sanitisation for empty homes ready for new beginnings.",
+    price: "From \u00a3150",
     badge: null,
-    highlight: false,
+    badgeStyle: "",
+    selected: false,
+    iconColour: "text-secondary",
   },
 ] as const
 
 const addOns = [
-  {
-    icon: UtensilsCrossed,
-    name: "Oven Cleaning",
-    price: "£45",
-  },
-  {
-    icon: Refrigerator,
-    name: "Fridge Cleaning",
-    price: "£30",
-  },
-  {
-    icon: Shirt,
-    name: "Ironing Service",
-    price: "£30",
-  },
-  {
-    icon: AppWindow,
-    name: "Inside Windows",
-    price: "£25",
-  },
-  {
-    icon: WashingMachine,
-    name: "Laundry Service",
-    price: "£25",
-  },
-  {
-    icon: Layers,
-    name: "Carpet Cleaning",
-    price: "From £40",
-  },
+  { icon: UtensilsCrossed, name: "Oven Cleaning", price: "\u00a325" },
+  { icon: Refrigerator, name: "Fridge Cleaning", price: "\u00a310" },
+  { icon: Shirt, name: "Ironing", price: "\u00a35/hr" },
+  { icon: AppWindow, name: "Inside Windows", price: "\u00a325" },
+  { icon: WashingMachine, name: "Laundry Service", price: "\u00a325" },
+  { icon: Layers, name: "Carpet Cleaning", price: "From \u00a340" },
 ] as const
 
 export default function ServicesPage() {
   return (
-    <main className="pt-28 pb-20 px-6 max-w-7xl mx-auto">
+    <div className="pt-12 pb-20 px-6 max-w-7xl mx-auto">
       {/* Page Header */}
       <header className="mb-12">
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-primary mb-4">
@@ -98,83 +82,70 @@ export default function ServicesPage() {
       </header>
 
       {/* Two-column layout: content + sidebar */}
-      <div className="grid lg:grid-cols-[1fr_380px] gap-10 items-start">
-
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         {/* Left: Service Cards + Add-ons */}
-        <div className="space-y-12">
-
+        <div className="lg:col-span-8 space-y-12">
           {/* Service Selection Cards */}
-          <section aria-labelledby="services-heading">
-            <h2
-              id="services-heading"
-              className="text-2xl font-bold text-foreground mb-6"
-            >
-              Choose Your Service
-            </h2>
-
-            <div className="grid md:grid-cols-3 gap-6 mt-4">
+          <section>
+            <div className="grid md:grid-cols-3 gap-6">
               {services.map((service) => {
                 const Icon = service.icon
                 return (
-                  <Card
+                  <div
                     key={service.name}
                     className={cn(
-                      "relative overflow-visible transition-all duration-300 cursor-pointer hover:shadow-lg",
-                      service.highlight
+                      "group relative bg-card p-8 rounded-xl transition-all duration-300 cursor-pointer",
+                      "shadow-[0_20px_50px_rgba(0,0,0,0.04)]",
+                      service.selected
                         ? "border-2 border-primary shadow-[0_20px_50px_rgba(81,25,131,0.08)]"
-                        : "hover:border-secondary"
+                        : "border border-transparent hover:border-secondary"
                     )}
                   >
-                    {service.badge && (
-                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-black px-4 py-1 rounded-full tracking-widest whitespace-nowrap uppercase">
-                        {service.badge}
-                      </span>
+                    {/* SELECTED floating label */}
+                    {service.selected && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-black px-4 py-1 rounded-full tracking-widest whitespace-nowrap">
+                        SELECTED
+                      </div>
                     )}
-                    <CardHeader className="pb-2">
-                      <div className="flex justify-between items-start mb-4">
+
+                    {/* Icon + Badge row */}
+                    <div className="mb-6 flex justify-between items-start">
+                      <Icon
+                        className={cn("size-10", service.iconColour)}
+                        aria-hidden="true"
+                      />
+                      {service.badge && (
                         <div
                           className={cn(
-                            "w-12 h-12 rounded-full flex items-center justify-center",
-                            service.highlight ? "bg-primary/10" : "bg-accent"
+                            "text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider",
+                            service.badgeStyle
                           )}
                         >
-                          <Icon
-                            className={cn(
-                              "size-6",
-                              service.highlight
-                                ? "text-primary"
-                                : "text-secondary"
-                            )}
-                            aria-hidden="true"
-                          />
+                          {service.badge}
                         </div>
-                      </div>
-                      <CardTitle className="text-xl font-bold text-foreground">
-                        {service.name}
-                      </CardTitle>
-                      <CardDescription className="text-sm leading-relaxed mt-1">
-                        {service.description}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-primary font-extrabold text-2xl">
-                        {service.price}
-                      </p>
-                    </CardContent>
-                  </Card>
+                      )}
+                    </div>
+
+                    <h3 className="text-xl font-bold text-foreground mb-2">
+                      {service.name}
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                      {service.description}
+                    </p>
+                    <div className="text-primary font-extrabold text-2xl">
+                      {service.price}
+                    </div>
+                  </div>
                 )
               })}
             </div>
           </section>
 
           {/* Add-Ons Grid */}
-          <section aria-labelledby="addons-heading">
+          <section>
             <div className="flex items-center gap-4 mb-8">
-              <h2
-                id="addons-heading"
-                className="text-2xl font-bold text-foreground whitespace-nowrap"
-              >
-                Add-On Services
+              <h2 className="text-2xl font-bold text-foreground whitespace-nowrap">
+                Enhance Your Experience
               </h2>
               <div className="h-px flex-1 bg-border" aria-hidden="true" />
             </div>
@@ -187,12 +158,12 @@ export default function ServicesPage() {
                     key={addon.name}
                     className={cn(
                       "group flex flex-col items-center justify-center p-6",
-                      "bg-card rounded-xl border border-border",
-                      "hover:border-secondary hover:shadow-lg transition-all duration-200",
-                      "cursor-pointer text-center"
+                      "bg-card rounded-xl",
+                      "border border-transparent hover:border-secondary hover:shadow-xl",
+                      "transition-all duration-200 cursor-pointer text-center"
                     )}
                   >
-                    <div className="w-14 h-14 rounded-full bg-accent/40 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                       <Icon
                         className="size-6 text-accent-foreground"
                         aria-hidden="true"
@@ -212,10 +183,10 @@ export default function ServicesPage() {
         </div>
 
         {/* Right: Booking Summary Sidebar */}
-        <div className="lg:sticky lg:top-28">
-          <BookingSummary />
-        </div>
+        <aside className="lg:col-span-4 sticky top-28">
+          <BookingSummary showTrustBadgesOutside hideBlobs />
+        </aside>
       </div>
-    </main>
+    </div>
   )
 }
