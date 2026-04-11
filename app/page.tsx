@@ -69,7 +69,7 @@ function HeroSection() {
               href="/services"
               className={cn(
                 "inline-flex items-center justify-center",
-                "rounded-full border-2 border-secondary text-secondary px-8 py-4",
+                "rounded-full bg-accent text-secondary px-8 py-4",
                 "text-lg font-bold",
                 "transition-all duration-300 hover:opacity-90 active:scale-95"
               )}
@@ -91,7 +91,7 @@ function HeroSection() {
             className="pointer-events-none absolute -bottom-12 -left-12 w-80 h-80 rounded-full bg-accent blur-3xl opacity-40"
           />
 
-          <div className="relative aspect-[4/5] w-full rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-700 bg-muted">
+          <div className="relative aspect-[3/4] max-h-[500px] w-full rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-700 bg-muted">
             <Image
               src="/images/hero-clean-home.jpg"
               alt="Pristine living room"
@@ -350,19 +350,19 @@ function MonicaDifferenceSection() {
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* Left: circular image with floating stat */}
-          <div className="relative">
-            <div className="aspect-square rounded-full overflow-hidden bg-muted">
+          <div className="relative max-w-md mx-auto lg:mx-0">
+            <div className="relative aspect-square rounded-full overflow-hidden bg-muted">
               <Image
                 src="/images/professional-cleaner.jpg"
                 alt="Professional cleaner in a bright white kitchen"
                 fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 1024px) 100vw, 400px"
                 className="object-cover opacity-90 mix-blend-multiply grayscale hover:grayscale-0 transition-all duration-700"
               />
             </div>
 
             {/* Floating stat bubble */}
-            <div className="absolute -bottom-8 -right-8 w-64 h-64 glass-card rounded-3xl p-8 shadow-xl flex flex-col justify-center">
+            <div className="absolute -bottom-6 -right-6 w-48 h-48 glass-card rounded-3xl p-6 shadow-xl flex flex-col justify-center">
               <div className="text-4xl font-black italic text-primary mb-2">
                 100%
               </div>
