@@ -31,17 +31,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Address fields throughout the site use UK format (postcode field, no US state field) and all copy uses UK English spelling
   4. The Tailwind v4 theme tokens, shared Nav, and shared Footer are the single source of truth for colours and layout — no inline design-3 Material Design tokens remain in JSX
   5. AGENTS.md and CLAUDE.md are updated with project context so any LLM contributor can orient themselves from those files alone
-**Plans:** 8 plans
-
-Plans:
-- [ ] 01-01-PLAN.md — Design system foundation (colour tokens, font swap, glass-card utilities, shadcn installs)
-- [ ] 01-02-PLAN.md — Shared Nav and Footer components wired into root layout
-- [ ] 01-03-PLAN.md — Homepage conversion (hero, pricing cards, Monica Difference, testimonials, CTA)
-- [ ] 01-04-PLAN.md — Services page with service cards, add-ons grid, and BookingSummary sidebar
-- [ ] 01-05-PLAN.md — Schedule page (Home Details, Calendar, Arrival Window) with interactive components
-- [ ] 01-06-PLAN.md — Checkout page with contact form, UK address form, and sidebar
-- [ ] 01-07-PLAN.md — UK localisation sweep, Terms & Conditions page, image/icon verification
-- [ ] 01-08-PLAN.md — Visual verification checkpoint and AGENTS.md/CLAUDE.md docs update
+**Plans**: TBD
 
 ### Phase 2: Booking Flow
 **Goal**: A customer can complete a full booking from service selection through to a confirmation page with a job reference number, with their selections preserved across all four steps
@@ -107,7 +97,7 @@ Note: Phases 4 and 5 depend only on Phase 1 and could be planned earlier, but ar
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Design Conversion | 0/8 | Planning complete | - |
+| 1. Foundation & Design Conversion | 0/TBD | Not started | - |
 | 2. Booking Flow | 0/TBD | Not started | - |
 | 3. Calendar & Email Integration | 0/TBD | Not started | - |
 | 4. SEO & Content Pages | 0/TBD | Not started | - |
