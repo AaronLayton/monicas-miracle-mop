@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function SchedulePage() {
   return (
     <main className="min-h-screen bg-background py-12">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 md:px-8">
         {/* Page heading */}
         <div className="mb-10">
           <h1 className="font-heading text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">

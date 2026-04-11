@@ -152,7 +152,7 @@ function ServiceCard({
       className={cn(
         "relative flex flex-col rounded-[2rem] p-10 transition-all duration-500",
         featured
-          ? "bg-primary text-white scale-105 shadow-2xl shadow-primary/20 z-10"
+          ? "bg-primary-container text-white scale-105 shadow-2xl shadow-primary/20 z-10"
           : "bg-card group hover:-translate-y-2"
       )}
     >

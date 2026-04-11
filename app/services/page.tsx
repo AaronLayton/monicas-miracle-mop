@@ -10,8 +10,7 @@ import {
   WashingMachine,
   Layers,
 } from "lucide-react"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { BookingSummary } from "@/components/booking/booking-summary"
 import { cn } from "@/lib/utils"
 
@@ -136,7 +135,7 @@ export default function ServicesPage() {
                         <div
                           className={cn(
                             "w-12 h-12 rounded-full flex items-center justify-center",
-                            service.highlight ? "bg-primary/10" : "bg-muted"
+                            service.highlight ? "bg-primary/10" : "bg-accent"
                           )}
                         >
                           <Icon
@@ -162,16 +161,6 @@ export default function ServicesPage() {
                         {service.price}
                       </p>
                     </CardContent>
-                    <CardFooter className="bg-transparent border-t-0">
-                      {/* Phase 1: non-functional — booking state in Phase 2 */}
-                      <Button
-                        variant={service.highlight ? "default" : "outline"}
-                        className="w-full rounded-full"
-                        aria-label={`Select ${service.name}`}
-                      >
-                        Select
-                      </Button>
-                    </CardFooter>
                   </Card>
                 )
               })}
@@ -190,7 +179,7 @@ export default function ServicesPage() {
               <div className="h-px flex-1 bg-border" aria-hidden="true" />
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {addOns.map((addon) => {
                 const Icon = addon.icon
                 return (

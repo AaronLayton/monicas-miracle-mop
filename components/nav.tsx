@@ -5,10 +5,9 @@ import { MobileNavToggle } from "@/components/mobile-nav-toggle"
 import { cn } from "@/lib/utils"
 
 const navLinks: { href: Route; label: string }[] = [
-  { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
-  { href: "/schedule" as Route, label: "Schedule" },
-  { href: "/checkout" as Route, label: "Checkout" },
+  { href: "#reviews" as Route, label: "Reviews" },
+  { href: "#about" as Route, label: "About" },
 ]
 
 export function Nav() {
