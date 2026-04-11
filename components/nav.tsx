@@ -1,9 +1,10 @@
 import Link from "next/link"
 import Image from "next/image"
+import type { Route } from "next"
 import { MobileNavToggle } from "@/components/mobile-nav-toggle"
 import { cn } from "@/lib/utils"
 
-const navLinks = [
+const navLinks: { href: Route; label: string }[] = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
   { href: "/schedule", label: "Schedule" },

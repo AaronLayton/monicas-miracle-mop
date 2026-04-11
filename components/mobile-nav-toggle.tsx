@@ -2,10 +2,11 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import type { Route } from "next"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-const navLinks = [
+const navLinks: { href: Route; label: string }[] = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
   { href: "/schedule", label: "Schedule" },

@@ -1,20 +1,21 @@
 import Link from "next/link"
 import Image from "next/image"
+import type { Route } from "next"
 import { Separator } from "@/components/ui/separator"
 
-const serviceLinks = [
+const serviceLinks: { href: Route; label: string }[] = [
   { href: "/services", label: "Standard Clean" },
   { href: "/services", label: "Deep Clean" },
   { href: "/services", label: "Move-In/Out Clean" },
 ]
 
-const companyLinks = [
+const companyLinks: { href: Route; label: string }[] = [
   { href: "/about", label: "About" },
   { href: "/terms", label: "Terms & Conditions" },
   { href: "/privacy", label: "Privacy Policy" },
 ]
 
-const supportLinks = [
+const supportLinks: { href: Route; label: string }[] = [
   { href: "/contact", label: "Contact Us" },
   { href: "/faq", label: "FAQ" },
   { href: "/areas", label: "Service Areas" },
