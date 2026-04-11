@@ -31,7 +31,19 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Address fields throughout the site use UK format (postcode field, no US state field) and all copy uses UK English spelling
   4. The Tailwind v4 theme tokens, shared Nav, and shared Footer are the single source of truth for colours and layout — no inline design-3 Material Design tokens remain in JSX
   5. AGENTS.md and CLAUDE.md are updated with project context so any LLM contributor can orient themselves from those files alone
-**Plans**: TBD
+**Plans**: 10 plans (8 original + 2 gap closure)
+
+Plans:
+- [x] 01-01-PLAN.md — Design system tokens and font setup
+- [x] 01-02-PLAN.md — Shared Nav and Footer components
+- [x] 01-03-PLAN.md — Homepage conversion
+- [x] 01-04-PLAN.md — Services page conversion
+- [x] 01-05-PLAN.md — Schedule page conversion
+- [x] 01-06-PLAN.md — Checkout page conversion
+- [x] 01-07-PLAN.md — UK localisation and Terms page
+- [x] 01-08-PLAN.md — AGENTS.md and CLAUDE.md documentation
+- [ ] 01-09-PLAN.md — Gap closure: Nav links, Footer background, container consistency
+- [ ] 01-10-PLAN.md — Gap closure: Homepage card colour, Services buttons/icons, Checkout sidebar blobs
 
 ### Phase 2: Booking Flow
 **Goal**: A customer can complete a full booking from service selection through to a confirmation page with a job reference number, with their selections preserved across all four steps
@@ -97,7 +109,7 @@ Note: Phases 4 and 5 depend only on Phase 1 and could be planned earlier, but ar
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Design Conversion | 0/TBD | Not started | - |
+| 1. Foundation & Design Conversion | 8/10 | Gap closure planned | - |
 | 2. Booking Flow | 0/TBD | Not started | - |
 | 3. Calendar & Email Integration | 0/TBD | Not started | - |
 | 4. SEO & Content Pages | 0/TBD | Not started | - |
