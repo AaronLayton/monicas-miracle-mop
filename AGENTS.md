@@ -8,7 +8,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 ## Overview
 
-Professional website for Monica's Miracle Mop, Kasey's domestic house cleaning business based in the UK. Built with Next.js 16 App Router, Tailwind CSS v4, and shadcn/ui (base-nova style). The site enables customers to browse services, schedule appointments, and book cleaning jobs. Booking confirmation events are added to Google Calendar and confirmation emails sent via Resend.
+Professional website for Monica's Miracle Mop, Kasey's domestic house cleaning business based in the UK. Built with Next.js 16 App Router, Tailwind CSS v4, and shadcn/ui (base-nova style). The site enables customers to browse services, schedule appointments, and book cleaning jobs. Bookings are stored in Neon Postgres (`lib/booking/store.ts`); confirmation emails go out via Resend (customer + owner, BCC to Aaron) with an .ics calendar attachment. Bookings sync into Kasey's Google Calendar via a service account (`lib/calendar/google.ts` — no-op until the GOOGLE_* env vars are set); the token-secured `/api/calendar` ICS feed exists as a fallback. Resend caveat: until a domain is verified at resend.com/domains, emails only deliver to the account owner (monicasmiraclemop@gmail.com).
 
 ## Tech Stack
 
@@ -139,6 +139,8 @@ docs/
 |------|------|-------------|
 | `/` | Homepage | Hero, pricing cards, Monica Difference, testimonials, CTA |
 | `/services` | Services | Service selection, add-ons, booking summary sidebar |
+| `/gallery` | Gallery | Real before/after photos, comparison sliders, job groups |
+| `/admin` | Admin | Kasey's dashboard (ADMIN_PASSWORD cookie session): booking list, reschedule/status/cancel, message customers |
 | `/schedule` | Schedule | Home details, calendar, arrival window, sidebar |
 | `/checkout` | Checkout | Contact form, UK address form, sidebar (no payment) |
 | `/terms` | Terms | Cancellation policy, payment terms |
@@ -147,39 +149,38 @@ docs/
 
 - All prices in GBP (£) — no USD amounts anywhere
 - UK English spelling in all user-visible text: colour, organised, centre, favourite
-- UK address format: Address Line 1, Address Line 2, Town/City, County, Postcode
+- UK address format: Address Line 1, Address Line 2, Town/City, Postcode (no county — dropped from the form; still optional in stored-booking schema for backwards compatibility)
 - UK phone format: 07700 900000
 - `lang="en-GB"` on the `<html>` element
 - No US-specific terminology: use "flat" not "apartment", "postcode" not "zip code"
 - Copyright and legal text must reference UK law where applicable
 
-## Pricing (from Kasey's flyer — use these exact prices)
+## Pricing (canonical — `lib/data/services.ts`)
+
+Flyer + site catalogue, **one line per offering** (no duplicate ironing/fridge rows):
 
 | Service | Price |
 |---------|-------|
 | Standard Clean | £20/hr (weekly/fortnightly) |
-| Deep Clean | £100–£200 (depending on home size) |
+| Deep Clean | From £100 (2-bed baseline; estimate scales with home size, steeper than Standard Clean) |
 | Move-In/Out Clean | From £150 |
-| Oven Cleaning | £45 |
-| Fridge Cleaning | £30 |
-| Ironing Service | £30 |
+| Oven Cleaning | £40 (minimum 1 hour) |
+| Fridge Cleaning | £15 (minimum 30 minutes) |
+| Microwave Clean | £10 |
+| Ironing | £15 per basket (flyer) |
 | Inside Windows | £25 |
-| Laundry Service | £25 |
-| Carpet Cleaning | From £40 |
+| Laundry Service | £15 per load |
+| Bathroom Cabinet Clean | £10 per cabinet |
+| Bedsheet Change | £5 per bed (flyer Busy Parent) |
+| Toy Organisation | £10 per room (flyer Busy Parent) |
 
-**Add-ons (from flyer):**
-- Ironing: £5/hr
-- Oven: £25
-- Fridge: £10
-- Microwave: £5
-- Bathroom Cabinet Clean: £10/per
-- Busy Parent — Ironing Service: £75
-- Busy Parent — Fridge Organise: £50
-- Busy Parent — Bathroom Overhaul: £50
+Discontinued (kept `active: false` in `lib/data/services.ts` so historic bookings resolve): Carpet Cleaning, Bathroom Overhaul.
 
 ## Business Rules
 
-- No payment processing — Kasey collects on the day (bank transfer or cash)
+- Working hours (`WEEKLY_AVAILABILITY` in `lib/data/services.ts`): Mon/Tue/Fri 13:30–17:30, Wed 10:00–17:00, no Thu/Sat/Sun. Arrival windows outside these hours display as "Fully booked" rather than hidden.
+- Online deposits are DISABLED (`DEPOSIT_PERCENT = 0` / `DEPOSITS_ENABLED` in `lib/data/services.ts`) — Stripe code paths remain but are dormant; set `DEPOSIT_PERCENT` back to 0.2 to re-enable
+- Kasey collects payment on the day (bank transfer or cash)
 - Kasey does a 15-min phone consultation before every job (keys, requirements, T&Cs)
 - Cancellation policy: 24hrs notice required; under 24hrs = 50% fee; locked out = 100% fee
 - No deposits taken

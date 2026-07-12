@@ -1,12 +1,14 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
-  /* config options here */
   typedRoutes: true,
+  allowedDevOrigins: ["*.ngrok-free.app"],
   devIndicators: {
     position: "bottom-right",
   },
-  cacheComponents: true,
-};
+  experimental: {
+    viewTransition: true,
+  },
+}
 
-export default nextConfig;
+export default nextConfig

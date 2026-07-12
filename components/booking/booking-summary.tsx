@@ -1,7 +1,7 @@
 // Phase 1: Static placeholder data. Phase 2 will connect to BookingContext.
 
 import { cn } from "@/lib/utils"
-import Link from "next/link"
+import { Link } from "next-view-transitions"
 import type { Route } from "next"
 import { ShoppingBasket, ArrowRight, ShieldCheck, ThumbsUp, Clock } from "lucide-react"
 

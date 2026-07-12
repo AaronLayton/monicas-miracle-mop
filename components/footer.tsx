@@ -1,121 +1,99 @@
-import Link from "next/link"
+import { Link } from "next-view-transitions"
 import Image from "next/image"
 import type { Route } from "next"
-import { Separator } from "@/components/ui/separator"
+import { BUSINESS } from "@/lib/data/services"
 
 const serviceLinks: { href: Route; label: string }[] = [
   { href: "/services", label: "Standard Clean" },
   { href: "/services", label: "Deep Clean" },
-  { href: "/services", label: "Move-In/Out Clean" },
+  { href: "/services", label: "Move-In / Move-Out" },
 ]
 
 const companyLinks: { href: Route; label: string }[] = [
   { href: "/about", label: "About" },
-  { href: "/terms", label: "Terms & Conditions" },
-  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/areas", label: "Service areas" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Contact" },
 ]
 
-const supportLinks: { href: Route; label: string }[] = [
-  { href: "/contact", label: "Contact Us" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/areas", label: "Service Areas" },
+const legalLinks: { href: Route; label: string }[] = [
+  { href: "/terms", label: "Terms" },
+  { href: "/privacy", label: "Privacy" },
 ]
 
 export function Footer() {
   return (
     <footer
       data-slot="footer"
-      className="w-full bg-muted border-t border-border"
+      className="vt-site-footer relative mt-auto w-full overflow-hidden border-t border-border/60"
+      style={{ viewTransitionName: "site-footer" }}
     >
-      <div className="mx-auto max-w-7xl px-4 md:px-8 py-14">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-          {/* Column 1: Brand */}
-          <div className="col-span-2 md:col-span-1 space-y-4">
-            <div className="flex items-center gap-3">
-              <Image
-                src="/logo.png"
-                alt="Monica's Miracle Mop logo"
-                width={36}
-                height={36}
-                className="size-9 object-contain"
-              />
-              <span className="text-base font-bold italic text-primary leading-tight">
-                Monica&apos;s Miracle Mop
-              </span>
-            </div>
+      <div className="absolute inset-0 mesh-soft opacity-60 pointer-events-none" />
+      <div className="relative mx-auto max-w-7xl px-4 md:px-8 py-16">
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-4">
+          <div className="col-span-2 md:col-span-1 flex flex-col gap-4">
+            <Image
+              src="/logo-transparent.png"
+              alt={BUSINESS.name}
+              width={280}
+              height={120}
+              className="h-12 w-auto max-w-[11rem] object-contain object-left"
+            />
             <p className="text-sm leading-relaxed text-muted-foreground max-w-xs">
-              Restoring order, one room at a time. Professional house cleaning
-              services across the local area.
+              Professional domestic cleaning with honest pricing, a friendly
+              consultation, and a home that feels genuinely cared for.
             </p>
+            <a
+              href={`mailto:${BUSINESS.email}`}
+              className="text-sm font-medium text-primary hover:underline underline-offset-4 w-fit"
+            >
+              {BUSINESS.email}
+            </a>
           </div>
 
-          {/* Column 2: Services */}
-          <div className="space-y-4">
-            <h5 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-              Services
-            </h5>
-            <ul className="space-y-2">
-              {serviceLinks.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3: Company */}
-          <div className="space-y-4">
-            <h5 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-              Company
-            </h5>
-            <ul className="space-y-2">
-              {companyLinks.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 4: Support */}
-          <div className="space-y-4">
-            <h5 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-              Support
-            </h5>
-            <ul className="space-y-2">
-              {supportLinks.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <div className="pt-2 space-y-1 text-sm text-muted-foreground">
-              <p>Service area: Local & surrounding towns</p>
-            </div>
-          </div>
+          <FooterCol title="Services" links={serviceLinks} />
+          <FooterCol title="Company" links={companyLinks} />
+          <FooterCol title="Legal" links={legalLinks} />
         </div>
 
-        <Separator className="my-8 bg-border" />
-
-        <p className="text-center text-sm text-muted-foreground md:text-left">
-          &copy; 2024 Monica&apos;s Miracle Mop. All rights reserved.
-        </p>
+        <div className="mt-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-border/50 pt-8">
+          <p className="text-xs text-muted-foreground">
+            © {new Date().getFullYear()} {BUSINESS.name}. All rights reserved.
+          </p>
+          <p className="text-xs text-muted-foreground">
+            UK English · Prices in GBP · Pay on the day — bank transfer or cash
+          </p>
+        </div>
       </div>
     </footer>
+  )
+}
+
+function FooterCol({
+  title,
+  links,
+}: {
+  title: string
+  links: { href: Route; label: string }[]
+}) {
+  return (
+    <div className="flex flex-col gap-4">
+      <h5 className="text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">
+        {title}
+      </h5>
+      <ul className="flex flex-col gap-2.5">
+        {links.map((link) => (
+          <li key={link.label}>
+            <Link
+              href={link.href}
+              className="text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }

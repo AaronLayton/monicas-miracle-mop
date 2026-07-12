@@ -6,6 +6,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
   --color-ring: var(--ring);
   --color-input: var(--input);
@@ -25,6 +26,10 @@
   --color-card: var(--card);
   --color-primary-container: var(--primary-container);
   --color-primary-soft: var(--primary-soft);
+  --color-lavender: var(--lavender);
+  --color-lavender-deep: var(--lavender-deep);
+  --color-cream: var(--cream);
+  --color-mist: var(--mist);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -35,27 +40,32 @@
 }
 
 :root {
-  --background: oklch(0.989 0.004 264.5);    /* #f8f9fe surface */
-  --foreground: oklch(0.153 0.007 264.5);    /* #191c1f on-surface */
-  --card: oklch(1 0 0);                      /* #ffffff */
-  --card-foreground: oklch(0.153 0.007 264.5);   /* #191c1f */
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.153 0.007 264.5);
-  --primary: oklch(0.341 0.195 307.1);       /* #511983 purple */
-  --primary-foreground: oklch(1 0 0);        /* #ffffff */
-  --secondary: oklch(0.437 0.094 213.7);     /* #00687a teal */
-  --secondary-foreground: oklch(1 0 0);      /* #ffffff */
-  --muted: oklch(0.963 0.006 264.5);         /* #f2f3f8 surface-container-low */
-  --muted-foreground: oklch(0.384 0.027 307.1);  /* #4c4451 */
-  --accent: oklch(0.916 0.063 218.5);        /* #abedff light teal */
-  --accent-foreground: oklch(0.271 0.071 213.7); /* #006172 */
-  --destructive: oklch(0.577 0.245 27.3);    /* #ba1a1a */
-  --border: oklch(0.839 0.018 307.1);        /* #cec3d3 outline-variant */
-  --input: oklch(0.839 0.018 307.1);
-  --ring: oklch(0.341 0.195 307.1);          /* match primary */
-  --radius: 0.75rem;                         /* design uses xl=0.75rem */
-  --primary-container: oklch(0.431 0.168 307.1); /* #6a359c for CTA buttons */
-  --primary-soft: oklch(0.918 0.062 307.1);      /* #f0dbff primary-fixed */
+  /* Cinematic soft lavender — inspired by FreshAura / Scrub moodboards */
+  --background: oklch(0.985 0.012 295);
+  --foreground: oklch(0.28 0.04 295);
+  --card: oklch(0.995 0.006 295);
+  --card-foreground: oklch(0.28 0.04 295);
+  --popover: oklch(0.995 0.006 295);
+  --popover-foreground: oklch(0.28 0.04 295);
+  --primary: oklch(0.42 0.16 305);
+  --primary-foreground: oklch(0.99 0.01 305);
+  --secondary: oklch(0.55 0.12 250);
+  --secondary-foreground: oklch(0.99 0.01 250);
+  --muted: oklch(0.96 0.02 295);
+  --muted-foreground: oklch(0.48 0.04 295);
+  --accent: oklch(0.93 0.04 295);
+  --accent-foreground: oklch(0.35 0.1 305);
+  --destructive: oklch(0.55 0.2 25);
+  --border: oklch(0.9 0.03 295);
+  --input: oklch(0.92 0.025 295);
+  --ring: oklch(0.55 0.14 305);
+  --radius: 1rem;
+  --primary-container: oklch(0.48 0.16 305);
+  --primary-soft: oklch(0.94 0.05 305);
+  --lavender: oklch(0.88 0.06 300);
+  --lavender-deep: oklch(0.72 0.1 300);
+  --cream: oklch(0.98 0.02 95);
+  --mist: oklch(0.95 0.03 250);
 }
 
 @layer base {
@@ -63,27 +73,217 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 10% -10%, oklch(0.92 0.06 305 / 0.55), transparent),
+      radial-gradient(ellipse 60% 40% at 90% 0%, oklch(0.93 0.04 250 / 0.4), transparent),
+      radial-gradient(ellipse 50% 30% at 50% 100%, oklch(0.94 0.04 295 / 0.35), transparent);
+    background-attachment: fixed;
   }
   html {
-    @apply font-sans;
+    @apply font-sans scroll-smooth;
+  }
+  ::selection {
+    background: oklch(0.85 0.08 305);
+    color: oklch(0.28 0.04 295);
   }
 }
 
 @layer utilities {
   .glass-card {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: oklch(1 0 0 / 0.72);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
   }
   .glass-card-nav {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: oklch(1 0 0 / 0.78);
+    backdrop-filter: blur(22px) saturate(1.2);
+    -webkit-backdrop-filter: blur(22px) saturate(1.2);
   }
   .glass-card-sidebar {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: oklch(1 0 0 / 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .text-display {
+    font-family: var(--font-display), ui-serif, Georgia, serif;
+  }
+  .gradient-hero {
+    background:
+      radial-gradient(ellipse 70% 60% at 70% 40%, oklch(0.9 0.07 305 / 0.7), transparent 60%),
+      radial-gradient(ellipse 50% 50% at 20% 80%, oklch(0.92 0.05 250 / 0.5), transparent 55%),
+      linear-gradient(165deg, oklch(0.97 0.02 295), oklch(0.94 0.04 300));
+  }
+  .gradient-orb {
+    background: radial-gradient(
+      circle,
+      oklch(0.85 0.1 305 / 0.55) 0%,
+      oklch(0.9 0.06 280 / 0.25) 45%,
+      transparent 70%
+    );
+  }
+  .mesh-soft {
+    background-image:
+      radial-gradient(at 20% 30%, oklch(0.86 0.1 305 / 0.55) 0px, transparent 52%),
+      radial-gradient(at 80% 20%, oklch(0.88 0.07 250 / 0.48) 0px, transparent 48%),
+      radial-gradient(at 50% 80%, oklch(0.9 0.06 95 / 0.42) 0px, transparent 52%),
+      radial-gradient(at 70% 70%, oklch(0.9 0.08 305 / 0.28) 0px, transparent 45%);
+    background-color: oklch(0.97 0.02 295);
+  }
+  .shadow-cinematic {
+    box-shadow:
+      0 4px 24px -4px oklch(0.42 0.12 305 / 0.12),
+      0 24px 64px -16px oklch(0.42 0.1 305 / 0.18);
+  }
+  .shadow-float {
+    box-shadow:
+      0 2px 8px oklch(0.42 0.08 305 / 0.06),
+      0 16px 40px -12px oklch(0.42 0.1 305 / 0.16);
+  }
+  .shine-border {
+    border: 1px solid oklch(1 0 0 / 0.65);
+    box-shadow:
+      inset 0 1px 0 oklch(1 0 0 / 0.5),
+      0 12px 40px -12px oklch(0.42 0.1 305 / 0.2);
+  }
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+  /** Clears fixed transparent nav — use on page roots that are not full-bleed heroes */
+  .page-nav-offset {
+    @apply pt-24 md:pt-28;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   View Transitions — shared-element morphing
+   ───────────────────────────────────────────────────────────
+   Named elements are captured as separate groups and morph
+   position/size via the UA default group animation.
+   Do NOT put height/overflow overrides on old/new snapshots —
+   that kills the geometry morph and leaves only a cross-fade.
+   ═══════════════════════════════════════════════════════════ */
+
+@supports (view-transition-name: none) {
+  /* Everything without a name: quick soft fade */
+  ::view-transition-old(root) {
+    animation: vt-fade-out 280ms cubic-bezier(0.4, 0, 1, 1) both;
+  }
+  ::view-transition-new(root) {
+    animation: vt-fade-in 320ms cubic-bezier(0, 0, 0.2, 1) both;
+  }
+
+  /*
+   * Group morph: UA default animation interpolates transform + width + height.
+   * Only set duration/easing — never replace animation-name or force height.
+   */
+  ::view-transition-group(site-nav),
+  ::view-transition-group(booking-sidebar),
+  ::view-transition-group(booking-title),
+  ::view-transition-group(booking-subtitle),
+  ::view-transition-group(booking-steps) {
+    animation-duration: 480ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Footer rarely changes geometry — keep almost static */
+  ::view-transition-group(site-footer) {
+    animation-duration: 200ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /*
+   * Snapshot images: short content cross-fade while the group morphs.
+   * Header uses a slightly longer fade so pill ↔ transparent reads clearly.
+   */
+  ::view-transition-old(site-nav),
+  ::view-transition-old(booking-sidebar),
+  ::view-transition-old(booking-title),
+  ::view-transition-old(booking-subtitle),
+  ::view-transition-old(booking-steps) {
+    animation: vt-fade-out 220ms cubic-bezier(0.4, 0, 1, 1) both;
+  }
+  ::view-transition-new(site-nav),
+  ::view-transition-new(booking-sidebar),
+  ::view-transition-new(booking-title),
+  ::view-transition-new(booking-subtitle),
+  ::view-transition-new(booking-steps) {
+    animation: vt-fade-in 280ms cubic-bezier(0, 0, 0.2, 1) 60ms both;
+  }
+
+  ::view-transition-old(site-footer),
+  ::view-transition-new(site-footer) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  /* Don’t let CSS transitions fight the view-transition morph mid-nav */
+  :root:active-view-transition .vt-nav-shell {
+    transition: none !important;
+  }
+}
+
+@keyframes vt-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/*
+ * Names applied as classes. Prefer these on a non-sticky wrapper
+ * around the visual element so capture geometry is stable.
+ */
+.vt-site-nav {
+  view-transition-name: site-nav;
+}
+.vt-site-footer {
+  view-transition-name: site-footer;
+}
+.vt-booking-sidebar {
+  view-transition-name: booking-sidebar;
+}
+.vt-booking-title {
+  view-transition-name: booking-title;
+}
+.vt-booking-subtitle {
+  view-transition-name: booking-subtitle;
+}
+.vt-booking-steps {
+  view-transition-name: booking-steps;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .vt-site-nav,
+  .vt-site-footer,
+  .vt-booking-sidebar,
+  .vt-booking-title,
+  .vt-booking-subtitle,
+  .vt-booking-steps {
+    view-transition-name: none !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
 }
