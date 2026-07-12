@@ -4,6 +4,7 @@ import {
   BUSINESS,
   getServiceById,
 } from "@/lib/data/services"
+import { getSiteUrl } from "@/lib/site"
 
 /**
  * iCalendar (RFC 5545) builder for Monica's Miracle Mop bookings.
@@ -16,12 +17,8 @@ import {
 
 const CRLF = "\r\n"
 
-function siteUrl(): string {
-  return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
-}
-
 function bookingManageUrl(token: string): string {
-  return `${siteUrl()}/booking/${token}`
+  return `${getSiteUrl()}/booking/${token}`
 }
 
 /** Escape a value for an iCalendar TEXT property (RFC 5545 §3.3.11). */

@@ -7,6 +7,7 @@ import { Nav } from "@/components/nav"
 import { Footer } from "@/components/footer"
 import { BookingProvider } from "@/lib/booking/context"
 import { BUSINESS } from "@/lib/data/services"
+import { getSiteUrl } from "@/lib/site"
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -22,9 +23,7 @@ export const metadata: Metadata = {
   },
   description:
     "Professional house cleaning services with honest GBP pricing. Standard cleans, deep cleans, and move-in/out cleans. Book online in minutes.",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
-  ),
+  metadataBase: new URL(getSiteUrl()),
 }
 
 export default function RootLayout({

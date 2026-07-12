@@ -3,6 +3,7 @@ import { Resend } from "resend"
 import type { Booking } from "@/lib/booking/types"
 import { BUSINESS, ARRIVAL_WINDOWS, formatPrice, getServiceById } from "@/lib/data/services"
 import { bookingToIcsEvent } from "@/lib/calendar/ics"
+import { getSiteUrl } from "@/lib/site"
 import {
   CustomerConfirmationEmail,
   OwnerNotificationEmail,
@@ -24,12 +25,8 @@ function fromAddress() {
   )
 }
 
-function siteUrl() {
-  return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
-}
-
 function bookingManageUrl(token: string) {
-  return `${siteUrl()}/booking/${token}`
+  return `${getSiteUrl()}/booking/${token}`
 }
 
 function windowLabel(id: string) {

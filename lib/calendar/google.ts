@@ -6,6 +6,7 @@ import {
   formatPrice,
   getServiceById,
 } from "@/lib/data/services"
+import { getSiteUrl } from "@/lib/site"
 
 /**
  * Google Calendar sync — pushes bookings straight into Kasey's calendar via
@@ -63,7 +64,7 @@ function bookingToEvent(booking: Booking): calendar_v3.Schema$Event {
   ]
     .filter(Boolean)
     .join(", ")
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+  const siteUrl = getSiteUrl()
 
   return {
     summary: `${service} — ${customer} (${booking.reference})`,
