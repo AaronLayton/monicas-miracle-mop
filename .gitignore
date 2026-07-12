@@ -44,4 +44,4 @@ next-env.d.ts
 /data/*.tmp
 
 # local booking data (migrated to Neon — never commit, contains PII)
-data/
+/data/
