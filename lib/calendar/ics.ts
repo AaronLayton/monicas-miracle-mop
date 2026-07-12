@@ -95,15 +95,19 @@ function locationFor(booking: Booking): string {
 }
 
 /** The VEVENT lines for a single booking (without BEGIN/END wrappers folded). */
-function eventLines(booking: Booking): string[] {
+function eventLines(booking: Booking, adminView = false): string[] {
   const window = ARRIVAL_WINDOWS.find((w) => w.id === booking.arrivalWindowId)
   const start = window?.start ?? "09:00"
   const end = window?.end ?? "17:00"
 
-  const summary = `${BUSINESS.name} — ${serviceName(booking.primaryServiceId)}`
-  const description =
-    `Booking reference ${booking.reference}.\n` +
-    `Manage your booking: ${bookingManageUrl(booking.token)}`
+  const summary = adminView
+    ? `${serviceName(booking.primaryServiceId)} — ${booking.contact.firstName} ${booking.contact.lastName}`
+    : `${BUSINESS.name} — ${serviceName(booking.primaryServiceId)}`
+  const description = adminView
+    ? `Booking reference ${booking.reference}.\n` +
+      `Open in the dashboard: ${getSiteUrl()}/admin/bookings/${booking.id}`
+    : `Booking reference ${booking.reference}.\n` +
+      `Manage your booking: ${bookingManageUrl(booking.token)}`
 
   return [
     "BEGIN:VEVENT",
@@ -132,7 +136,11 @@ export function bookingToIcsEvent(booking: Booking): string {
   return lines.join(CRLF) + CRLF
 }
 
-/** Return one VCALENDAR with a VEVENT per booking (calendar subscription). */
+/**
+ * Return one VCALENDAR with a VEVENT per booking. This feeds Kasey's
+ * calendar subscription, so events carry customer names and link to the
+ * admin dashboard rather than the customer manage page.
+ */
 export function bookingsToIcs(bookings: Booking[]): string {
   const lines = [
     "BEGIN:VCALENDAR",
@@ -141,7 +149,7 @@ export function bookingsToIcs(bookings: Booking[]): string {
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     line("X-WR-CALNAME", `${BUSINESS.name} Bookings`),
-    ...bookings.flatMap(eventLines),
+    ...bookings.flatMap((b) => eventLines(b, true)),
     "END:VCALENDAR",
   ]
   return lines.join(CRLF) + CRLF

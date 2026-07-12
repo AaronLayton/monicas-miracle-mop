@@ -181,9 +181,21 @@ export function OwnerNotificationEmail(
         <br />
         Address: {props.address}
         <br />
-        Phone: {props.phone}
+        Phone:{" "}
+        <Link
+          href={`tel:${props.phone.replace(/[^\d+]/g, "")}`}
+          style={{ color: purple, fontWeight: 600 }}
+        >
+          {props.phone}
+        </Link>
         <br />
-        Email: {props.email}
+        Email:{" "}
+        <Link
+          href={`mailto:${props.email}`}
+          style={{ color: purple, fontWeight: 600 }}
+        >
+          {props.email}
+        </Link>
         <br />
         Estimate: {props.estimatedTotal}
         {props.depositPaid ? ` · Deposit paid ${props.deposit}` : ""}
@@ -314,6 +326,60 @@ export function BusinessMessageEmail(props: {
           }}
         >
           View your booking
+        </Link>
+      </Text>
+    </Shell>
+  )
+}
+
+export function CustomerMessageEmail(props: {
+  reference: string
+  customerName: string
+  message: string
+  adminUrl: string
+}) {
+  return (
+    <Shell preview={`${props.customerName} sent a message about ${props.reference}`}>
+      <Heading as="h1" style={{ color: purple, fontSize: 22 }}>
+        New message from {props.customerName}
+      </Heading>
+      <Text style={{ color: muted, fontSize: 15 }}>
+        About booking <strong>{props.reference}</strong>:
+      </Text>
+      <Section
+        style={{
+          backgroundColor: soft,
+          borderRadius: 12,
+          padding: 16,
+          margin: "16px 0",
+        }}
+      >
+        <Text
+          style={{
+            margin: 0,
+            color: "#3a3342",
+            fontSize: 15,
+            lineHeight: "24px",
+            whiteSpace: "pre-wrap",
+          }}
+        >
+          {props.message}
+        </Text>
+      </Section>
+      <Text style={{ marginTop: 16 }}>
+        <Link
+          href={props.adminUrl}
+          style={{
+            backgroundColor: purple,
+            color: "#fff",
+            padding: "12px 20px",
+            borderRadius: 999,
+            textDecoration: "none",
+            fontSize: 14,
+            fontWeight: 600,
+          }}
+        >
+          Reply in the dashboard
         </Link>
       </Text>
     </Shell>

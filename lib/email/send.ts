@@ -10,6 +10,7 @@ import {
   BookingUpdatedEmail,
   BookingCancelledEmail,
   BusinessMessageEmail,
+  CustomerMessageEmail,
 } from "@/lib/email/templates"
 
 function getResend() {
@@ -27,6 +28,11 @@ function fromAddress() {
 
 function bookingManageUrl(token: string) {
   return `${getSiteUrl()}/booking/${token}`
+}
+
+/** Kasey's view of the booking — owner emails link here, not the customer page */
+function adminBookingUrl(id: string) {
+  return `${getSiteUrl()}/admin/bookings/${id}`
 }
 
 function windowLabel(id: string) {
@@ -137,6 +143,7 @@ export async function sendBookingConfirmationEmails(booking: Booking) {
       subject: `New booking ${booking.reference} — ${common.customerName}`,
       react: OwnerNotificationEmail({
         ...common,
+        manageUrl: adminBookingUrl(booking.id),
         phone: booking.contact.phone,
         email: booking.contact.email,
         message: booking.message,
@@ -174,12 +181,29 @@ export async function sendBookingUpdatedEmails(booking: Booking) {
         customerName: `${booking.contact.firstName} ${booking.contact.lastName}`,
         date: booking.date,
         arrivalWindow: windowLabel(booking.arrivalWindowId),
-        manageUrl,
+        manageUrl: adminBookingUrl(booking.id),
         forOwner: true,
       }),
       attachments: ics,
     }),
   ])
+}
+
+/** Customer portal → Kasey: notify her a customer left a message. */
+export async function sendCustomerMessageEmail(
+  booking: Booking,
+  message: string
+) {
+  await send({
+    to: process.env.OWNER_EMAIL ?? BUSINESS.email,
+    subject: `Message from ${booking.contact.firstName} ${booking.contact.lastName} — ${booking.reference}`,
+    react: CustomerMessageEmail({
+      reference: booking.reference,
+      customerName: `${booking.contact.firstName} ${booking.contact.lastName}`,
+      message,
+      adminUrl: adminBookingUrl(booking.id),
+    }),
+  })
 }
 
 /** Admin dashboard → customer: a direct message (consultation arranging etc.) */
@@ -219,7 +243,7 @@ export async function sendBookingCancelledEmails(booking: Booking) {
         reference: booking.reference,
         customerName: `${booking.contact.firstName} ${booking.contact.lastName}`,
         reason: booking.cancelReason,
-        manageUrl,
+        manageUrl: adminBookingUrl(booking.id),
         forOwner: true,
       }),
     }),

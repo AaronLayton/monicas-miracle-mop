@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { Loader2, LockKeyhole } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-export function AdminLoginForm() {
+export function AdminLoginForm({ next = "/admin" }: { next?: string }) {
   const router = useRouter()
   const [password, setPassword] = useState("")
   const [error, setError] = useState<string | null>(null)
@@ -23,7 +23,8 @@ export function AdminLoginForm() {
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data?.error ?? "Sign in failed")
-      router.push("/admin")
+      // Guarded server-side: next is always an /admin path
+      router.push(next as Parameters<typeof router.push>[0])
       router.refresh()
     } catch (err) {
       setError(err instanceof Error ? err.message : "Sign in failed")

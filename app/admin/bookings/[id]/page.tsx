@@ -45,8 +45,8 @@ export default async function AdminBookingPage({
 }: {
   params: Promise<{ id: string }>
 }) {
-  await requireAdmin()
   const { id } = await params
+  await requireAdmin(`/admin/bookings/${id}`)
   const booking = await getBookingById(id)
   if (!booking) notFound()
 

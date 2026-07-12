@@ -78,7 +78,8 @@ function bookingToEvent(booking: Booking): calendar_v3.Schema$Event {
       `Estimate: ${formatPrice(booking.estimatedTotalPence)}`,
       booking.message ? `Message: ${booking.message}` : null,
       ``,
-      `Manage: ${siteUrl}/booking/${booking.token}`,
+      // This event lives in Kasey's calendar — link to her admin view
+      `Manage: ${siteUrl}/admin/bookings/${booking.id}`,
     ]
       .filter((l): l is string => l !== null)
       .join("\n"),

@@ -16,6 +16,7 @@ import { updateBookingSchema } from "@/lib/booking/types"
 import {
   sendBookingUpdatedEmails,
   sendBookingCancelledEmails,
+  sendCustomerMessageEmail,
 } from "@/lib/email/send"
 import { createDepositCheckoutSession } from "@/lib/stripe"
 
@@ -62,6 +63,12 @@ export async function PATCH(req: Request, { params }: Params) {
       const booking = await addMessage(token, "customer", text)
       if (!booking) {
         return NextResponse.json({ error: "Not found" }, { status: 404 })
+      }
+      // Let Kasey know — otherwise messages sit unseen in the dashboard
+      try {
+        await sendCustomerMessageEmail(booking, text)
+      } catch (e) {
+        console.error("Customer message email failed", e)
       }
       return NextResponse.json({ booking })
     }

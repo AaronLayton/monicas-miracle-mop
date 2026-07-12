@@ -56,10 +56,17 @@ export async function isAdminAuthenticated(): Promise<boolean> {
   return verifySessionToken(cookieStore.get(COOKIE_NAME)?.value)
 }
 
-/** Page guard — redirects to the login screen when not signed in. */
-export async function requireAdmin(): Promise<void> {
+/**
+ * Page guard — redirects to the login screen when not signed in. Pass the
+ * current path so email deep links land back on the right page after login.
+ */
+export async function requireAdmin(nextPath?: string): Promise<void> {
   if (!(await isAdminAuthenticated())) {
-    redirect("/admin/login")
+    redirect(
+      nextPath
+        ? `/admin/login?next=${encodeURIComponent(nextPath)}`
+        : "/admin/login"
+    )
   }
 }
 
