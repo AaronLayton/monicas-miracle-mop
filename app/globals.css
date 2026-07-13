@@ -82,6 +82,9 @@
   }
   html {
     @apply font-sans scroll-smooth;
+    /* Enable transitions to intrinsic sizes (e.g. block-size: auto) — used by
+       the FAQ accordions. Opt-in required; Chrome/Edge 129+, others ignore it. */
+    interpolate-size: allow-keywords;
   }
   ::selection {
     background: oklch(0.85 0.08 305);
@@ -285,5 +288,30 @@
   ::view-transition-old(*),
   ::view-transition-new(*) {
     animation: none !important;
+  }
+}
+
+/* FAQ accordion — smoothly animate the native <details> open/closed.
+   Progressive enhancement: ::details-content + interpolate-size land in
+   Chrome/Edge 129/131+. Firefox/Safari ignore these rules and open instantly
+   (still fully functional). Kept unlayered so [open] wins the cascade. */
+.faq-accordion::details-content {
+  block-size: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    block-size 0.32s ease,
+    opacity 0.28s ease,
+    content-visibility 0.32s ease allow-discrete;
+}
+
+.faq-accordion[open]::details-content {
+  block-size: auto;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-accordion::details-content {
+    transition: none;
   }
 }

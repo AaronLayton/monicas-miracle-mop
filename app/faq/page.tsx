@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { Plus } from "lucide-react"
 import { BUSINESS } from "@/lib/data/services"
 import { Reveal } from "@/components/motion/reveal"
 import { JsonLd } from "@/components/json-ld"
@@ -62,12 +63,10 @@ export default function FaqPage() {
         <div className="flex flex-col gap-4">
           {faqs.map((item, i) => (
             <Reveal key={item.q} delay={i * 0.04}>
-              <details className="group rounded-3xl bg-card shadow-float shine-border open:shadow-cinematic transition-shadow">
+              <details className="faq-accordion group rounded-3xl bg-card shadow-float shine-border open:shadow-cinematic transition-shadow">
                 <summary className="cursor-pointer list-none px-6 py-5 font-semibold text-foreground flex items-center justify-between gap-4">
                   {item.q}
-                  <span className="text-primary text-xl group-open:rotate-45 transition-transform">
-                    +
-                  </span>
+                  <Plus className="size-5 shrink-0 text-primary transition-transform duration-300 group-open:rotate-45" />
                 </summary>
                 <p className="px-6 pb-6 text-sm text-muted-foreground leading-relaxed -mt-1">
                   {item.a}
