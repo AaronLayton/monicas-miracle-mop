@@ -115,9 +115,14 @@ export function personSchema() {
 }
 
 /**
- * The core business node: a HouseCleaning business (a subtype of
- * ProfessionalService / LocalBusiness). @id "#business" — referenced by the
+ * The core business node: a LocalBusiness. @id "#business" — referenced by the
  * WebSite, Service, Person, and Breadcrumb nodes.
+ *
+ * NB: schema.org has no cleaning-specific type ("HouseCleaning"/"CleaningService"
+ * are Google Business Profile categories, NOT schema.org types — using them fails
+ * validation). The domestic-cleaning specificity lives in the GBP category; here
+ * we use the generic, valid LocalBusiness (a subtype of Organization, so it's a
+ * valid target for publisher/worksFor/provider references).
  *
  * Service-area business: emits areaServed (the towns) and a locality-level
  * PostalAddress (no street). Omits telephone/sameAs when the data is empty.
@@ -132,7 +137,7 @@ export function localBusinessSchema(options: BusinessSchemaOptions = {}) {
 
   const node: Record<string, unknown> = {
     "@context": SCHEMA_CONTEXT,
-    "@type": "HouseCleaning",
+    "@type": "LocalBusiness",
     "@id": nodeId(NODE_ID.business),
     name: BUSINESS.name,
     url,

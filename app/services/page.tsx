@@ -2,7 +2,11 @@ import { Suspense } from "react"
 import type { Metadata } from "next"
 import { ServicesSelector } from "@/components/booking/services-selector"
 import { JsonLd } from "@/components/json-ld"
-import { serviceListSchema, breadcrumbSchema } from "@/lib/seo/schema"
+import {
+  localBusinessSchema,
+  serviceListSchema,
+  breadcrumbSchema,
+} from "@/lib/seo/schema"
 
 export const metadata: Metadata = {
   alternates: { canonical: "/services" },
@@ -16,6 +20,7 @@ export default function ServicesPage() {
     <>
       <JsonLd
         data={[
+          localBusinessSchema(),
           ...serviceListSchema(),
           breadcrumbSchema([
             { name: "Home", url: "/" },
