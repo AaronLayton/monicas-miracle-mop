@@ -15,7 +15,25 @@ export function CheckoutForm() {
   const { draft, setDraft, canProceedToCheckout, canSubmit, depositPence, reset } =
     useBooking()
   const [submitting, setSubmitting] = useState(false)
+  const [redirecting, setRedirecting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  // After a successful booking we clear the draft and navigate to the manage
+  // page. Show a confirmation screen while that navigation lands, so the
+  // now-empty draft doesn't briefly flash the "choose a service" empty state.
+  if (redirecting) {
+    return (
+      <div className="page-nav-offset mx-auto max-w-lg px-4 pb-20 text-center flex flex-col items-center gap-4">
+        <Loader2 className="size-8 text-primary animate-spin" />
+        <h1 className="text-display text-2xl font-semibold">
+          Booking confirmed
+        </h1>
+        <p className="text-muted-foreground">
+          Taking you to your booking…
+        </p>
+      </div>
+    )
+  }
 
   if (!canProceedToCheckout) {
     return (
@@ -83,11 +101,16 @@ export function CheckoutForm() {
             : data?.error || "Something went wrong"
         throw new Error(msg)
       }
-      reset()
       if (data.checkoutUrl) {
+        // Stripe deposit flow — full-page nav, no client re-render to guard.
+        reset()
         window.location.href = data.checkoutUrl
         return
       }
+      // Show the confirmation screen first, then clear the draft and navigate —
+      // so the emptied draft never flashes the "choose a service" empty state.
+      setRedirecting(true)
+      reset()
       router.push(data.booking.manageUrl)
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to book")

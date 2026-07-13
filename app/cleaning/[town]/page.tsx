@@ -142,7 +142,7 @@ export default async function TownCleaningPage({ params }: Props) {
           Choose your service, pick a time that works, and confirm in minutes.
         </p>
         <Link
-          href="/schedule"
+          href="/services"
           className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-cinematic"
         >
           Book your clean <ArrowRight className="size-4" />
