@@ -1,7 +1,8 @@
 "use client"
 
-import { useEffect, useRef } from "react"
-import { useSearchParams } from "next/navigation"
+import { useCallback, useEffect, useRef } from "react"
+import type { Route } from "next"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useTransitionRouter } from "next-view-transitions"
 import { BookingHeader } from "@/components/booking/booking-header"
 import {
@@ -58,6 +59,8 @@ const ICONS: Record<string, LucideIcon> = {
 export function ServicesSelector() {
   const searchParams = useSearchParams()
   const router = useTransitionRouter()
+  const navRouter = useRouter()
+  const pathname = usePathname()
   const {
     draft,
     hydrated,
@@ -70,26 +73,35 @@ export function ServicesSelector() {
   const primary = getPrimaryServices()
   const addons = getAddons()
 
-  // Homepage (and other) deep-links: /services?service=standard-clean.
-  // Apply the param ONCE per distinct value (after sessionStorage hydrate) —
-  // it's an initial default, not a lock. Tracking the last-applied value lets
-  // the user freely switch services afterwards, while a genuinely new deep-link
-  // (different ?service=) still takes effect.
-  const lastAppliedService = useRef<string | null>(null)
+  // Deep-link support: /services?service=standard-clean. Apply the URL param
+  // ONCE after sessionStorage hydrates (an initial default, not a lock), so a
+  // stale draft doesn't win but the user can freely switch afterwards.
+  const didInitFromUrl = useRef(false)
   useEffect(() => {
-    if (!hydrated) return
+    if (!hydrated || didInitFromUrl.current) return
+    didInitFromUrl.current = true
     const pre = searchParams.get("service")
-    if (!pre || lastAppliedService.current === pre) return
-    if (!primary.some((s) => s.id === pre)) return
-    lastAppliedService.current = pre
-    if (draft.primaryServiceId !== pre) setPrimaryService(pre)
-  }, [
-    hydrated,
-    searchParams,
-    primary,
-    draft.primaryServiceId,
-    setPrimaryService,
-  ])
+    if (pre && primary.some((s) => s.id === pre) && draft.primaryServiceId !== pre) {
+      setPrimaryService(pre)
+    }
+    // Intentionally one-shot on hydrate — later ?service=/draft changes must not
+    // re-trigger this (that's what mirroring below is for).
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hydrated])
+
+  // Selecting a service updates the draft AND mirrors it into the URL, so the
+  // page always reflects the current choice and stays shareable/re-linkable.
+  const selectService = useCallback(
+    (id: string) => {
+      setPrimaryService(id)
+      const params = new URLSearchParams(Array.from(searchParams.entries()))
+      params.set("service", id)
+      navRouter.replace(`${pathname}?${params.toString()}` as Route, {
+        scroll: false,
+      })
+    },
+    [setPrimaryService, searchParams, navRouter, pathname]
+  )
 
   const regularAddons = addons.filter((a) => a.category === "addon")
   const busyParent = addons.filter((a) => a.category === "busy-parent")
@@ -121,7 +133,7 @@ export function ServicesSelector() {
                   key={service.id}
                   service={service}
                   selected={draft.primaryServiceId === service.id}
-                  onSelect={() => setPrimaryService(service.id)}
+                  onSelect={() => selectService(service.id)}
                 />
               ))}
             </div>
