@@ -1,8 +1,11 @@
 import type { Metadata } from "next"
 import { BUSINESS } from "@/lib/data/services"
 import { Reveal } from "@/components/motion/reveal"
+import { JsonLd } from "@/components/json-ld"
+import { faqPageSchema, breadcrumbSchema } from "@/lib/seo/schema"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/faq" },
   title: "FAQ",
   description: "Common questions about booking, pricing, and cancellations.",
 }
@@ -37,6 +40,17 @@ const faqs = [
 export default function FaqPage() {
   return (
     <div className="page-nav-offset mx-auto max-w-3xl px-4 md:px-8 pb-14 md:pb-20">
+        <JsonLd
+          data={[
+            faqPageSchema(
+              faqs.map((item) => ({ question: item.q, answer: item.a })),
+            ),
+            breadcrumbSchema([
+              { name: "Home", url: "/" },
+              { name: "FAQ", url: "/faq" },
+            ]),
+          ]}
+        />
         <Reveal>
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary mb-3">
             FAQ

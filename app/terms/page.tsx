@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { BUSINESS } from "@/lib/data/services"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/terms" },
   title: "Terms & conditions",
 }
 

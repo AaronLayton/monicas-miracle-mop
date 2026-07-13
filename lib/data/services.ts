@@ -109,15 +109,67 @@ export const BUSINESS = {
   name: "Monica's Miracle Mop",
   ownerName: "Kasey",
   email: "monicasmiraclemop@gmail.com",
-  phone: "", // add when ready
+  phone: "", // add when ready — flows straight into schema.org + contact page
   tagline: "Sparkling homes, stress-free living",
   locale: "en-GB",
   currency: "GBP",
+  /** Base town the business operates from (service-area business, no shopfront). */
+  primaryLocation: "Sutton-in-Ashfield",
+  region: "Nottinghamshire",
+  addressCountry: "GB",
+  paymentAccepted: "Cash, Bank transfer",
   consultationMinutes: 15,
   cancellationHours: 24,
   lateCancelFeePercent: 50,
   noShowFeePercent: 100,
 } as const
+
+/**
+ * Social / external profiles for schema.org `sameAs` (entity disambiguation).
+ * Add the real URLs once the profiles exist — Google Business Profile, Facebook,
+ * Instagram, etc. Empty entries are ignored, so it's safe to leave blanks.
+ */
+export const SOCIAL_LINKS: string[] = [
+  // "https://www.facebook.com/...",
+  // "https://www.instagram.com/...",
+  // "https://g.page/...",            // Google Business Profile short link
+].filter(Boolean)
+
+export interface ServiceArea {
+  /** Display name, e.g. "Sutton-in-Ashfield". */
+  name: string
+  /** URL slug for the /cleaning/[town] landing page. */
+  slug: string
+  /** The home town — ranked first, used as the schema locality. */
+  isPrimary?: boolean
+}
+
+/**
+ * Towns Kasey covers. Sutton-in-Ashfield is the base; the rest are the close
+ * surrounding areas. Edit this one list to add/remove a town — it drives the
+ * local landing pages (/cleaning/[town]), the /areas page, the sitemap, and the
+ * schema.org `areaServed`. Keep slugs lowercase-hyphenated.
+ */
+export const SERVICE_AREAS: ServiceArea[] = [
+  { name: "Sutton-in-Ashfield", slug: "sutton-in-ashfield", isPrimary: true },
+  { name: "Kirkby-in-Ashfield", slug: "kirkby-in-ashfield" },
+  { name: "Huthwaite", slug: "huthwaite" },
+  { name: "Skegby", slug: "skegby" },
+  { name: "Stanton Hill", slug: "stanton-hill" },
+  { name: "Teversal", slug: "teversal" },
+  { name: "Mansfield", slug: "mansfield" },
+  { name: "Mansfield Woodhouse", slug: "mansfield-woodhouse" },
+]
+
+/** The primary town (falls back to the first entry). */
+export function getPrimaryArea(): ServiceArea {
+  return SERVICE_AREAS.find((a) => a.isPrimary) ?? SERVICE_AREAS[0]
+}
+
+/** Look up a service area by slug (for the /cleaning/[town] route). */
+export function getServiceArea(slug: string): ServiceArea | undefined {
+  return SERVICE_AREAS.find((a) => a.slug === slug)
+}
 
 export const ARRIVAL_WINDOWS: ArrivalWindow[] = [
   { id: "morning", label: "Morning", start: "08:00", end: "12:00" },

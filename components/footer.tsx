@@ -1,7 +1,7 @@
 import { Link } from "next-view-transitions"
 import Image from "next/image"
 import type { Route } from "next"
-import { BUSINESS } from "@/lib/data/services"
+import { BUSINESS, SERVICE_AREAS } from "@/lib/data/services"
 
 const serviceLinks: { href: Route; label: string }[] = [
   { href: "/services", label: "Standard Clean" },
@@ -57,7 +57,25 @@ export function Footer() {
           <FooterCol title="Legal" links={legalLinks} />
         </div>
 
-        <div className="mt-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-border/50 pt-8">
+        <div className="mt-12 border-t border-border/50 pt-8">
+          <h5 className="text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground mb-3">
+            Areas we cover
+          </h5>
+          <ul className="flex flex-wrap gap-x-4 gap-y-2">
+            {SERVICE_AREAS.map((area) => (
+              <li key={area.slug}>
+                <Link
+                  href={`/cleaning/${area.slug}` as Route}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  House cleaning in {area.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-border/50 pt-8">
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} {BUSINESS.name}. All rights reserved.
           </p>

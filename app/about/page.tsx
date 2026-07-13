@@ -4,15 +4,45 @@ import { Link } from "next-view-transitions"
 import { BUSINESS } from "@/lib/data/services"
 import { Reveal } from "@/components/motion/reveal"
 import { CheckCircle2, Heart, Sparkles } from "lucide-react"
+import { JsonLd } from "@/components/json-ld"
+import { organizationSchema, breadcrumbSchema, NODE_ID } from "@/lib/seo/schema"
+import { getSiteUrl } from "@/lib/site"
+
+const ABOUT_DESCRIPTION = `Meet the team behind ${BUSINESS.name} — professional domestic cleaning with heart.`
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about" },
   title: "About",
-  description: `Meet the team behind ${BUSINESS.name} — professional domestic cleaning with heart.`,
+  description: ABOUT_DESCRIPTION,
 }
 
 export default function AboutPage() {
+  const siteUrl = getSiteUrl()
+  const aboutPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": `${siteUrl}/about#webpage`,
+    url: `${siteUrl}/about`,
+    name: "About",
+    description: ABOUT_DESCRIPTION,
+    inLanguage: BUSINESS.locale,
+    isPartOf: { "@id": `${siteUrl}${NODE_ID.website}` },
+    about: { "@id": `${siteUrl}${NODE_ID.business}` },
+    mainEntity: { "@id": `${siteUrl}${NODE_ID.business}` },
+  }
+
   return (
     <div className="page-nav-offset mx-auto max-w-7xl px-4 md:px-8 pb-14 md:pb-20">
+        <JsonLd
+          data={[
+            organizationSchema(),
+            aboutPageSchema,
+            breadcrumbSchema([
+              { name: "Home", url: "/" },
+              { name: "About", url: "/about" },
+            ]),
+          ]}
+        />
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <Reveal>
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary mb-3">

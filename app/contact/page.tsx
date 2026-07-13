@@ -3,8 +3,11 @@ import { BUSINESS } from "@/lib/data/services"
 import { Reveal } from "@/components/motion/reveal"
 import { Mail, MessageCircle } from "lucide-react"
 import { Link } from "next-view-transitions"
+import { JsonLd } from "@/components/json-ld"
+import { localBusinessSchema, breadcrumbSchema } from "@/lib/seo/schema"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact",
   description: `Get in touch with ${BUSINESS.name}.`,
 }
@@ -12,6 +15,15 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="page-nav-offset mx-auto max-w-3xl px-4 md:px-8 pb-14 md:pb-20">
+        <JsonLd
+          data={[
+            localBusinessSchema(),
+            breadcrumbSchema([
+              { name: "Home", url: "/" },
+              { name: "Contact", url: "/contact" },
+            ]),
+          ]}
+        />
         <Reveal>
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary mb-3">
             Contact

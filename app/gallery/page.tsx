@@ -6,15 +6,51 @@ import { galleryJobs, sliderPairs, socialCards } from "@/lib/data/gallery"
 import { BeforeAfterSlider } from "@/components/gallery/before-after-slider"
 import { GalleryGrid } from "@/components/gallery/gallery-grid"
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal"
+import { JsonLd } from "@/components/json-ld"
+import { breadcrumbSchema } from "@/lib/seo/schema"
+import { getSiteUrl } from "@/lib/site"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/gallery" },
   title: "Gallery",
   description: `Real before-and-after results from ${BUSINESS.name} — kitchens, ovens, bathrooms and more, photographed on the job.`,
 }
 
 export default function GalleryPage() {
+  const siteUrl = getSiteUrl()
+
+  // Every genuine job photo plus the branded social cards — deduped implicitly
+  // (the slider pairs reuse images already listed in galleryJobs).
+  const galleryImages = [
+    ...galleryJobs.flatMap((job) => job.images),
+    ...socialCards,
+  ]
+
+  const imageGallerySchema = {
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    name: `${BUSINESS.name} — before-and-after gallery`,
+    description: `Real before-and-after cleaning results from ${BUSINESS.name}: kitchens, ovens, microwaves, bathrooms and more, photographed on genuine bookings.`,
+    url: `${siteUrl}/gallery`,
+    inLanguage: BUSINESS.locale,
+    isPartOf: { "@id": `${siteUrl}#website` },
+    associatedMedia: galleryImages.map((image) => ({
+      "@type": "ImageObject",
+      contentUrl: `${siteUrl}${image.src.src}`,
+      caption: image.alt,
+      width: image.src.width,
+      height: image.src.height,
+    })),
+  }
+
+  const breadcrumbs = breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Gallery", url: "/gallery" },
+  ])
+
   return (
     <div className="page-nav-offset pb-14 md:pb-20">
+      <JsonLd data={[imageGallerySchema, breadcrumbs]} />
       {/* HEADER */}
       <section className="mx-auto max-w-7xl px-4 md:px-8">
         <Reveal>

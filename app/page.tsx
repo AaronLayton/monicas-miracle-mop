@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import Image from "next/image"
 import { Link } from "next-view-transitions"
 import {
@@ -21,6 +22,16 @@ import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal"
 import { HomeHeroVisual } from "@/components/home/hero-visual"
 import { BeforeAfterSlider } from "@/components/gallery/before-after-slider"
 import { cn } from "@/lib/utils"
+import { JsonLd } from "@/components/json-ld"
+import {
+  localBusinessSchema,
+  webSiteSchema,
+  personSchema,
+} from "@/lib/seo/schema"
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+}
 
 const testimonials = [
   {
@@ -66,6 +77,10 @@ export default function HomePage() {
 
   return (
     <>
+      <JsonLd
+        data={[localBusinessSchema(), webSiteSchema(), personSchema()]}
+      />
+
       {/* HERO */}
       <section className="relative overflow-hidden gradient-hero px-4 md:px-8 pb-20 pt-28 md:pt-32 md:pb-28">
         <div
