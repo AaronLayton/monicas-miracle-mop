@@ -1,8 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useRef } from "react"
-import type { Route } from "next"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { useSearchParams } from "next/navigation"
 import { useTransitionRouter } from "next-view-transitions"
 import { BookingHeader } from "@/components/booking/booking-header"
 import {
@@ -59,8 +58,6 @@ const ICONS: Record<string, LucideIcon> = {
 export function ServicesSelector() {
   const searchParams = useSearchParams()
   const router = useTransitionRouter()
-  const navRouter = useRouter()
-  const pathname = usePathname()
   const {
     draft,
     hydrated,
@@ -89,18 +86,25 @@ export function ServicesSelector() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hydrated])
 
-  // Selecting a service updates the draft AND mirrors it into the URL, so the
-  // page always reflects the current choice and stays shareable/re-linkable.
+  // Selecting a service updates the draft AND mirrors it into the URL so the
+  // page stays shareable/re-linkable. We use the synchronous History API rather
+  // than a Next router navigation: a soft navigation can be superseded by the
+  // re-renders a real press triggers (framer whileTap spring + price recompute),
+  // which left the URL stale on some devices. replaceState updates the address
+  // bar immediately and can't be interrupted. The draft stays the source of truth.
   const selectService = useCallback(
     (id: string) => {
       setPrimaryService(id)
-      const params = new URLSearchParams(Array.from(searchParams.entries()))
+      if (typeof window === "undefined") return
+      const params = new URLSearchParams(window.location.search)
       params.set("service", id)
-      navRouter.replace(`${pathname}?${params.toString()}` as Route, {
-        scroll: false,
-      })
+      window.history.replaceState(
+        null,
+        "",
+        `${window.location.pathname}?${params.toString()}`
+      )
     },
-    [setPrimaryService, searchParams, navRouter, pathname]
+    [setPrimaryService]
   )
 
   const regularAddons = addons.filter((a) => a.category === "addon")
