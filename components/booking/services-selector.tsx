@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { useSearchParams } from "next/navigation"
 import { useTransitionRouter } from "next-view-transitions"
 import { BookingHeader } from "@/components/booking/booking-header"
@@ -70,15 +70,19 @@ export function ServicesSelector() {
   const primary = getPrimaryServices()
   const addons = getAddons()
 
-  // Homepage (and other) deep-links: /services?service=standard-clean
-  // Apply after sessionStorage hydrate so a stale draft doesn't win.
+  // Homepage (and other) deep-links: /services?service=standard-clean.
+  // Apply the param ONCE per distinct value (after sessionStorage hydrate) —
+  // it's an initial default, not a lock. Tracking the last-applied value lets
+  // the user freely switch services afterwards, while a genuinely new deep-link
+  // (different ?service=) still takes effect.
+  const lastAppliedService = useRef<string | null>(null)
   useEffect(() => {
     if (!hydrated) return
     const pre = searchParams.get("service")
-    if (!pre) return
+    if (!pre || lastAppliedService.current === pre) return
     if (!primary.some((s) => s.id === pre)) return
-    if (draft.primaryServiceId === pre) return
-    setPrimaryService(pre)
+    lastAppliedService.current = pre
+    if (draft.primaryServiceId !== pre) setPrimaryService(pre)
   }, [
     hydrated,
     searchParams,
