@@ -1,8 +1,24 @@
 "use client"
 
 import { useCallback, useEffect, useState } from "react"
+import { flushSync } from "react-dom"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight, X } from "lucide-react"
+
+/** Shared name that morphs the clicked tile into the lightbox and back. */
+const HERO_VT = "gallery-hero"
+
+/** Run a DOM update as a View Transition, falling back to an instant update. */
+function withViewTransition(update: () => void) {
+  if (
+    typeof document === "undefined" ||
+    !document.startViewTransition
+  ) {
+    update()
+    return null
+  }
+  return document.startViewTransition(() => flushSync(update))
+}
 import { cn } from "@/lib/utils"
 import { Reveal } from "@/components/motion/reveal"
 import type { GalleryImage, GalleryJob } from "@/lib/data/gallery"
@@ -25,8 +41,29 @@ export function GalleryGrid({ jobs, socialCards }: GalleryGridProps) {
     ...socialCards,
   ]
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+  // The tile the lightbox morphs from — kept through close so the shrink-back
+  // has a target, then cleared once the transition finishes.
+  const [sourceIndex, setSourceIndex] = useState<number | null>(null)
 
-  const close = useCallback(() => setLightboxIndex(null), [])
+  // Keep the morph source in sync with the visible image while stepping, so
+  // closing shrinks back to whichever tile is currently shown.
+  useEffect(() => {
+    if (lightboxIndex !== null) setSourceIndex(lightboxIndex)
+  }, [lightboxIndex])
+
+  const open = useCallback((index: number) => {
+    // Name the clicked tile first so the "old" snapshot has the morph source,
+    // then reveal the lightbox (which takes the name) inside the transition.
+    flushSync(() => setSourceIndex(index))
+    withViewTransition(() => setLightboxIndex(index))
+  }, [])
+
+  const close = useCallback(() => {
+    const transition = withViewTransition(() => setLightboxIndex(null))
+    const done = transition?.finished ?? Promise.resolve()
+    done.finally(() => setSourceIndex(null))
+  }, [])
+
   const step = useCallback(
     (dir: 1 | -1) =>
       setLightboxIndex((i) =>
@@ -78,7 +115,11 @@ export function GalleryGrid({ jobs, socialCards }: GalleryGridProps) {
                     <GalleryTile
                       key={image.src.src}
                       image={image}
-                      onOpen={() => setLightboxIndex(jobOffset + i)}
+                      active={
+                        lightboxIndex === null &&
+                        sourceIndex === jobOffset + i
+                      }
+                      onOpen={() => open(jobOffset + i)}
                     />
                   ))}
                 </div>
@@ -104,18 +145,20 @@ export function GalleryGrid({ jobs, socialCards }: GalleryGridProps) {
               </div>
 
               <div className="grid grid-cols-2 gap-3 md:gap-4">
-                {socialCards.map((image, i) => (
-                  <GalleryTile
-                    key={image.src.src}
-                    image={image}
-                    square
-                    onOpen={() =>
-                      setLightboxIndex(
-                        allImages.length - socialCards.length + i
-                      )
-                    }
-                  />
-                ))}
+                {socialCards.map((image, i) => {
+                  const globalIndex = allImages.length - socialCards.length + i
+                  return (
+                    <GalleryTile
+                      key={image.src.src}
+                      image={image}
+                      square
+                      active={
+                        lightboxIndex === null && sourceIndex === globalIndex
+                      }
+                      onOpen={() => open(globalIndex)}
+                    />
+                  )
+                })}
               </div>
             </article>
           </Reveal>
@@ -168,7 +211,10 @@ export function GalleryGrid({ jobs, socialCards }: GalleryGridProps) {
             className="flex max-h-full max-w-5xl flex-col items-center gap-4"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative overflow-hidden rounded-2xl">
+            <div
+              className="relative overflow-hidden rounded-2xl"
+              style={{ viewTransitionName: HERO_VT }}
+            >
               <Image
                 src={allImages[lightboxIndex].src}
                 alt={allImages[lightboxIndex].alt}
@@ -193,10 +239,13 @@ export function GalleryGrid({ jobs, socialCards }: GalleryGridProps) {
 function GalleryTile({
   image,
   square = false,
+  active = false,
   onOpen,
 }: {
   image: GalleryImage
   square?: boolean
+  /** True when this tile is the lightbox morph source (drives the shared name). */
+  active?: boolean
   onOpen: () => void
 }) {
   const chip = phaseChip[image.phase]
@@ -204,6 +253,7 @@ function GalleryTile({
     <button
       type="button"
       onClick={onOpen}
+      style={active ? { viewTransitionName: HERO_VT } : undefined}
       className={cn(
         "group relative overflow-hidden rounded-2xl md:rounded-3xl shadow-float",
         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",

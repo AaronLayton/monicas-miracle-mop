@@ -102,18 +102,25 @@ export default async function TownCleaningPage({ params }: Props) {
       <Stagger className="grid gap-4 sm:grid-cols-2">
         {services.map((service) => (
           <StaggerItem key={service.id}>
-            <div className="h-full rounded-2xl bg-card p-6 shadow-float shine-border flex flex-col gap-2">
+            <Link
+              href={`/services?service=${service.id}` as Route}
+              className="group h-full rounded-2xl bg-card p-6 shadow-float shine-border hover:shadow-cinematic transition-shadow flex flex-col gap-2"
+            >
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="size-5 text-secondary shrink-0" />
-                <h3 className="font-semibold">{service.name}</h3>
+                <h3 className="font-semibold flex-1">{service.name}</h3>
+                <ArrowRight className="size-4 text-primary opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed flex-1">
                 {service.description}
               </p>
               <p className="text-sm font-semibold text-primary">
                 {formatServicePrice(service)}
+                <span className="ml-2 font-medium text-muted-foreground group-hover:text-primary transition-colors">
+                  · Book now
+                </span>
               </p>
-            </div>
+            </Link>
           </StaggerItem>
         ))}
       </Stagger>

@@ -315,3 +315,11 @@
     transition: none;
   }
 }
+
+/* Gallery lightbox: the clicked tile morphs into the lightbox image and shrinks
+   back on close (View Transitions). Cover-crop both snapshots so the aspect
+   ratio change (cropped tile -> full image) morphs without stretching. */
+::view-transition-old(gallery-hero),
+::view-transition-new(gallery-hero) {
+  object-fit: cover;
+}
