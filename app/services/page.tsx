@@ -1,6 +1,7 @@
 import { Suspense } from "react"
 import type { Metadata } from "next"
 import { ServicesSelector } from "@/components/booking/services-selector"
+import { BUSINESS } from "@/lib/data/services"
 import { JsonLd } from "@/components/json-ld"
 import {
   localBusinessSchema,
@@ -8,11 +9,18 @@ import {
   breadcrumbSchema,
 } from "@/lib/seo/schema"
 
+const SERVICES_DESCRIPTION =
+  "Choose Standard Clean, Deep Clean, or Move-In/Out — plus add-ons. Honest GBP pricing."
+
 export const metadata: Metadata = {
   alternates: { canonical: "/services" },
   title: "Services",
-  description:
-    "Choose Standard Clean, Deep Clean, or Move-In/Out — plus add-ons. Honest GBP pricing.",
+  description: SERVICES_DESCRIPTION,
+  openGraph: {
+    title: `Services | ${BUSINESS.name}`,
+    description: SERVICES_DESCRIPTION,
+    url: "/services",
+  },
 }
 
 export default function ServicesPage() {

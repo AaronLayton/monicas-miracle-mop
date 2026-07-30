@@ -3,10 +3,12 @@ import Image from "next/image"
 import type { Route } from "next"
 import { BUSINESS, SERVICE_AREAS } from "@/lib/data/services"
 
+// Deep-link straight into the booking flow with the service pre-selected
+// (the /services page applies the ?service= param on load).
 const serviceLinks: { href: Route; label: string }[] = [
-  { href: "/services", label: "Standard Clean" },
-  { href: "/services", label: "Deep Clean" },
-  { href: "/services", label: "Move-In / Move-Out" },
+  { href: "/services?service=standard-clean" as Route, label: "Standard Clean" },
+  { href: "/services?service=deep-clean" as Route, label: "Deep Clean" },
+  { href: "/services?service=move-in-out" as Route, label: "Move-In / Move-Out" },
 ]
 
 const companyLinks: { href: Route; label: string }[] = [
@@ -44,12 +46,22 @@ export function Footer() {
               Professional domestic cleaning with honest pricing, a friendly
               consultation, and a home that feels genuinely cared for.
             </p>
-            <a
-              href={`mailto:${BUSINESS.email}`}
-              className="text-sm font-medium text-primary hover:underline underline-offset-4 w-fit"
-            >
-              {BUSINESS.email}
-            </a>
+            <div className="flex flex-col gap-1.5">
+              {BUSINESS.phone && (
+                <a
+                  href={`tel:${BUSINESS.phoneIntl}`}
+                  className="text-sm font-medium text-primary hover:underline underline-offset-4 w-fit tabular-nums"
+                >
+                  {BUSINESS.phone}
+                </a>
+              )}
+              <a
+                href={`mailto:${BUSINESS.email}`}
+                className="text-sm font-medium text-primary hover:underline underline-offset-4 w-fit"
+              >
+                {BUSINESS.email}
+              </a>
+            </div>
           </div>
 
           <FooterCol title="Services" links={serviceLinks} />

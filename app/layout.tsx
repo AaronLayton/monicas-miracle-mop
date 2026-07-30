@@ -6,6 +6,7 @@ import "./globals.css"
 import { Nav } from "@/components/nav"
 import { Footer } from "@/components/footer"
 import { BookingProvider } from "@/lib/booking/context"
+import { MotionProvider } from "@/components/motion/motion-provider"
 import { BUSINESS } from "@/lib/data/services"
 import { getSiteUrl } from "@/lib/site"
 
@@ -39,13 +40,14 @@ export const metadata: Metadata = {
   authors: [{ name: BUSINESS.ownerName }],
   creator: BUSINESS.name,
   publisher: BUSINESS.name,
+  // NB: no `url` here — og:url must be per-page (each page sets its own
+  // openGraph), otherwise every share canonicalises to the homepage.
   openGraph: {
     type: "website",
     locale: "en_GB",
     siteName: BUSINESS.name,
     title: `${BUSINESS.name} | House Cleaning in ${BUSINESS.primaryLocation}`,
     description: `Trusted domestic house cleaning in ${BUSINESS.primaryLocation} and nearby ${BUSINESS.region}. Book online in minutes.`,
-    url: "/",
   },
   twitter: {
     card: "summary_large_image",
@@ -78,12 +80,14 @@ export default function RootLayout({
       >
         <GoogleTagManager gtmId="GTM-W4LZJWFQ" />
         <body className="min-h-full flex flex-col font-sans">
-          <BookingProvider>
-            <Nav />
-            {/* No top padding — full-bleed heroes run under the transparent nav */}
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </BookingProvider>
+          <MotionProvider>
+            <BookingProvider>
+              <Nav />
+              {/* No top padding — full-bleed heroes run under the transparent nav */}
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </BookingProvider>
+          </MotionProvider>
         </body>
       </html>
     </ViewTransitions>

@@ -70,21 +70,24 @@ export function ServicesSelector() {
   const primary = getPrimaryServices()
   const addons = getAddons()
 
-  // Deep-link support: /services?service=standard-clean. Apply the URL param
-  // ONCE after sessionStorage hydrates (an initial default, not a lock), so a
-  // stale draft doesn't win but the user can freely switch afterwards.
-  const didInitFromUrl = useRef(false)
+  // Deep-link support: /services?service=standard-clean. Each distinct URL
+  // param is applied once (an initial default, not a lock) — a stale draft
+  // doesn't win, the user can switch freely afterwards, and a footer service
+  // link clicked while already on this page still applies (same-route soft
+  // navigation keeps this component mounted, so a one-shot flag would miss it).
+  const lastAppliedFromUrl = useRef<string | null>(null)
   useEffect(() => {
-    if (!hydrated || didInitFromUrl.current) return
-    didInitFromUrl.current = true
+    if (!hydrated) return
     const pre = searchParams.get("service")
-    if (pre && primary.some((s) => s.id === pre) && draft.primaryServiceId !== pre) {
+    if (!pre || pre === lastAppliedFromUrl.current) return
+    lastAppliedFromUrl.current = pre
+    if (primary.some((s) => s.id === pre) && draft.primaryServiceId !== pre) {
       setPrimaryService(pre)
     }
-    // Intentionally one-shot on hydrate — later ?service=/draft changes must not
-    // re-trigger this (that's what mirroring below is for).
+    // The card-click mirroring below also updates searchParams — the
+    // lastAppliedFromUrl/draft guards make that re-fire a no-op.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hydrated])
+  }, [hydrated, searchParams])
 
   // Selecting a service updates the draft AND mirrors it into the URL so the
   // page stays shareable/re-linkable. We use the synchronous History API rather

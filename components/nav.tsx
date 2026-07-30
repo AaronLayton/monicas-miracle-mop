@@ -6,8 +6,9 @@ import type { Route } from "next"
 import { usePathname } from "next/navigation"
 import { useEffect, useLayoutEffect, useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import { Menu, X, Sparkles } from "lucide-react"
+import { Menu, X, Sparkles, Phone } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { BUSINESS } from "@/lib/data/services"
 
 const navLinks: { href: Route; label: string }[] = [
   { href: "/services", label: "Services" },
@@ -57,7 +58,12 @@ export function Nav() {
           "transition-[max-width,margin,padding,background-color,box-shadow,border-radius,backdrop-filter] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
           scrolled
             ? "mt-3 max-w-[min(72rem,calc(100%-1.5rem))] rounded-[1.75rem] bg-white/80 px-3 py-2 shadow-[0_8px_32px_-8px_rgba(81,45,142,0.16)] backdrop-blur-xl backdrop-saturate-150 sm:px-4 md:rounded-full"
-            : "mt-0 max-w-7xl bg-transparent px-4 py-3 shadow-none backdrop-blur-0 md:px-8 md:py-4"
+            : cn(
+                "mt-0 max-w-7xl px-4 py-3 md:px-8 md:py-4",
+                open
+                  ? "rounded-b-[1.75rem] bg-white/90 shadow-float backdrop-blur-xl"
+                  : "bg-transparent shadow-none backdrop-blur-0"
+              )
         )}
         style={{ viewTransitionName: "site-nav" }}
       >
@@ -120,6 +126,25 @@ export function Nav() {
           </nav>
 
           <div className="flex shrink-0 items-center gap-2">
+            {BUSINESS.phone && (
+              <a
+                href={`tel:${BUSINESS.phoneIntl}`}
+                aria-label={`Call ${BUSINESS.name} on ${BUSINESS.phone}`}
+                className={cn(
+                  "inline-flex items-center justify-center gap-2 rounded-full text-sm font-semibold text-foreground transition-colors focus-ring",
+                  "size-10 xl:size-auto xl:px-4 xl:py-2.5",
+                  scrolled
+                    ? "bg-primary-soft/60 hover:bg-primary-soft"
+                    : "bg-white/70 ring-1 ring-border hover:bg-white"
+                )}
+              >
+                <Phone className="size-4 text-primary" aria-hidden />
+                <span className="hidden xl:inline whitespace-nowrap tabular-nums">
+                  {BUSINESS.phone}
+                </span>
+              </a>
+            )}
+
             <Link
               href="/services"
               className={cn(
@@ -186,6 +211,16 @@ export function Nav() {
                 >
                   Book a clean
                 </Link>
+                {BUSINESS.phone && (
+                  <a
+                    href={`tel:${BUSINESS.phoneIntl}`}
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-white/80 px-4 py-3 text-center text-sm font-semibold text-foreground ring-1 ring-border focus-ring"
+                    onClick={() => setOpen(false)}
+                  >
+                    <Phone className="size-4 text-primary" aria-hidden />
+                    Call {BUSINESS.phone}
+                  </a>
+                )}
               </nav>
             </motion.div>
           )}

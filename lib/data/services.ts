@@ -105,11 +105,35 @@ export const DEPOSITS_ENABLED = DEPOSIT_PERCENT > 0
 /** Minimum deposit in pence when deposit is enabled */
 export const DEPOSIT_MIN_PENCE = 2000 // £20
 
+/**
+ * UK number in any common form ("07700 900000", "+44 7700 900000",
+ * "+44 (0)7700 900000", "447700900000") → E.164 ("+447700900000").
+ * "" stays "" so an unset env var keeps the number hidden.
+ */
+function ukPhoneToE164(ukPhone: string): string {
+  const digits = ukPhone.replace(/\D/g, "")
+  // UK national numbers never start with 4 after the trunk 0, so a leading
+  // "44" can only be the country code.
+  const national = (
+    digits.startsWith("44") ? digits.slice(2) : digits
+  ).replace(/^0/, "")
+  return national ? `+44${national}` : ""
+}
+
 export const BUSINESS = {
   name: "Monica's Miracle Mop",
   ownerName: "Kasey",
   email: "monicasmiraclemop@gmail.com",
-  phone: "", // add when ready — flows straight into schema.org + contact page
+  /**
+   * Set NEXT_PUBLIC_PHONE_NUMBER (e.g. "07700 900000") to show the phone
+   * number and call buttons across the site (nav, footer, contact, area
+   * pages, schema.org). Leave it unset to hide the number everywhere.
+   * NEXT_PUBLIC_ because the nav is a client component; the value is inlined
+   * at build time, so changing it needs a redeploy.
+   */
+  phone: process.env.NEXT_PUBLIC_PHONE_NUMBER ?? "",
+  /** E.164 form for tel: links and schema.org telephone ("" when unset). */
+  phoneIntl: ukPhoneToE164(process.env.NEXT_PUBLIC_PHONE_NUMBER ?? ""),
   tagline: "Sparkling homes, stress-free living",
   locale: "en-GB",
   currency: "GBP",
@@ -142,6 +166,12 @@ export interface ServiceArea {
   slug: string
   /** The home town — ranked first, used as the schema locality. */
   isPrimary?: boolean
+  /**
+   * One or two town-specific sentences opening the landing-page hero.
+   * Keeps each /cleaning/[town] page genuinely different for readers and
+   * search engines — edit freely, keep it factual.
+   */
+  intro: string
 }
 
 /**
@@ -151,14 +181,55 @@ export interface ServiceArea {
  * schema.org `areaServed`. Keep slugs lowercase-hyphenated.
  */
 export const SERVICE_AREAS: ServiceArea[] = [
-  { name: "Sutton-in-Ashfield", slug: "sutton-in-ashfield", isPrimary: true },
-  { name: "Kirkby-in-Ashfield", slug: "kirkby-in-ashfield" },
-  { name: "Huthwaite", slug: "huthwaite" },
-  { name: "Skegby", slug: "skegby" },
-  { name: "Stanton Hill", slug: "stanton-hill" },
-  { name: "Teversal", slug: "teversal" },
-  { name: "Mansfield", slug: "mansfield" },
-  { name: "Mansfield Woodhouse", slug: "mansfield-woodhouse" },
+  {
+    name: "Sutton-in-Ashfield",
+    slug: "sutton-in-ashfield",
+    isPrimary: true,
+    intro:
+      "Sutton-in-Ashfield is home — Monica's Miracle Mop is based right here in town, so there's no call-out distance at all.",
+  },
+  {
+    name: "Kirkby-in-Ashfield",
+    slug: "kirkby-in-ashfield",
+    intro:
+      "Kirkby-in-Ashfield sits just south of our Sutton-in-Ashfield base, an easy hop for regular weekly and fortnightly cleans.",
+  },
+  {
+    name: "Huthwaite",
+    slug: "huthwaite",
+    intro:
+      "Huthwaite is right on our doorstep, on the western edge of Sutton-in-Ashfield — about as local as it gets for us.",
+  },
+  {
+    name: "Skegby",
+    slug: "skegby",
+    intro:
+      "Skegby is a couple of minutes up the road from our Sutton-in-Ashfield base, on the lanes out towards Teversal.",
+  },
+  {
+    name: "Stanton Hill",
+    slug: "stanton-hill",
+    intro:
+      "Stanton Hill sits beside Skegby just north of Sutton-in-Ashfield, only a short drive from our base.",
+  },
+  {
+    name: "Teversal",
+    slug: "teversal",
+    intro:
+      "Teversal is the prettiest corner of our patch — a small village out by the Derbyshire border, a short drive from Sutton-in-Ashfield.",
+  },
+  {
+    name: "Mansfield",
+    slug: "mansfield",
+    intro:
+      "Mansfield is the largest town we cover, a straight run up the A38 from our Sutton-in-Ashfield base.",
+  },
+  {
+    name: "Mansfield Woodhouse",
+    slug: "mansfield-woodhouse",
+    intro:
+      "Mansfield Woodhouse sits just north of Mansfield at the far edge of our patch — still an easy trip over from Sutton-in-Ashfield.",
+  },
 ]
 
 /** The primary town (falls back to the first entry). */
@@ -193,6 +264,28 @@ export const WEEKLY_AVAILABILITY: Record<
   4: null, // Thursday
   5: { start: "13:30", end: "17:30" }, // Friday
   6: null, // Saturday
+}
+
+export const DAY_NAMES: Record<number, string> = {
+  0: "Sunday",
+  1: "Monday",
+  2: "Tuesday",
+  3: "Wednesday",
+  4: "Thursday",
+  5: "Friday",
+  6: "Saturday",
+}
+
+/** The days Kasey works, in weekday order, with display names and hours. */
+export function getWorkingDays(): {
+  day: number
+  name: string
+  start: string
+  end: string
+}[] {
+  return Object.entries(WEEKLY_AVAILABILITY).flatMap(([day, hours]) =>
+    hours ? [{ day: Number(day), name: DAY_NAMES[Number(day)], ...hours }] : []
+  )
 }
 
 function timeToMinutes(hhmm: string): number {

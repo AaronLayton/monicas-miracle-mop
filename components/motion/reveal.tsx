@@ -41,14 +41,18 @@ export function Stagger({
   children,
   className,
   stagger = 0.08,
+  role,
 }: {
   children: React.ReactNode
   className?: string
   stagger?: number
+  /** e.g. "list" when the items are semantically a list of listitems */
+  role?: string
 }) {
   return (
     <motion.div
       className={className}
+      role={role}
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-40px" }}
@@ -65,13 +69,16 @@ export function Stagger({
 export function StaggerItem({
   children,
   className,
+  role,
 }: {
   children: React.ReactNode
   className?: string
+  role?: string
 }) {
   return (
     <motion.div
       className={className}
+      role={role}
       variants={{
         hidden: { opacity: 0, y: 20 },
         show: {

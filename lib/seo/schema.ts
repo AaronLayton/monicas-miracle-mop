@@ -15,9 +15,8 @@ import {
   BUSINESS,
   SOCIAL_LINKS,
   SERVICE_AREAS,
-  WEEKLY_AVAILABILITY,
   getActiveServices,
-  getPrimaryArea,
+  getWorkingDays,
   type Service,
 } from "@/lib/data/services"
 
@@ -48,17 +47,6 @@ function postalAddress() {
   }
 }
 
-/** Map WEEKLY_AVAILABILITY numeric weekday (0=Sun) to a schema.org day name. */
-const DAY_OF_WEEK: Record<number, string> = {
-  0: "Sunday",
-  1: "Monday",
-  2: "Tuesday",
-  3: "Wednesday",
-  4: "Thursday",
-  5: "Friday",
-  6: "Saturday",
-}
-
 /** Absolute URL for a site-relative path. */
 function abs(path = ""): string {
   const base = getSiteUrl()
@@ -78,17 +66,12 @@ function priceString(pence: number): string {
 
 /** OpeningHoursSpecification[] derived from Kasey's real weekly availability. */
 function openingHoursSpecification() {
-  return Object.entries(WEEKLY_AVAILABILITY)
-    .filter(
-      (entry): entry is [string, { start: string; end: string }] =>
-        entry[1] !== null
-    )
-    .map(([day, hours]) => ({
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: DAY_OF_WEEK[Number(day)],
-      opens: hours.start,
-      closes: hours.end,
-    }))
+  return getWorkingDays().map((d) => ({
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: d.name,
+    opens: d.start,
+    closes: d.end,
+  }))
 }
 
 export interface BusinessSchemaOptions {
@@ -169,7 +152,7 @@ export function localBusinessSchema(options: BusinessSchemaOptions = {}) {
   }
 
   if (BUSINESS.phone) {
-    node.telephone = BUSINESS.phone
+    node.telephone = BUSINESS.phoneIntl || BUSINESS.phone
   }
   if (SOCIAL_LINKS.length > 0) {
     node.sameAs = SOCIAL_LINKS

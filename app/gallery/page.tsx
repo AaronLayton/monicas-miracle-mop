@@ -10,10 +10,17 @@ import { JsonLd } from "@/components/json-ld"
 import { breadcrumbSchema } from "@/lib/seo/schema"
 import { getSiteUrl } from "@/lib/site"
 
+const GALLERY_DESCRIPTION = `Real before-and-after results from ${BUSINESS.name} — kitchens, ovens, bathrooms and more, photographed on the job.`
+
 export const metadata: Metadata = {
   alternates: { canonical: "/gallery" },
   title: "Gallery",
-  description: `Real before-and-after results from ${BUSINESS.name} — kitchens, ovens, bathrooms and more, photographed on the job.`,
+  description: GALLERY_DESCRIPTION,
+  openGraph: {
+    title: `Gallery | ${BUSINESS.name}`,
+    description: GALLERY_DESCRIPTION,
+    url: "/gallery",
+  },
 }
 
 export default function GalleryPage() {
