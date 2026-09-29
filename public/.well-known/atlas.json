@@ -1,0 +1,344 @@
+{
+  "atlas": "0.1",
+  "parcel": { "x": 1, "z": -1 },
+  "name": "Monica's Miracle Mop",
+  "description": "Miracle Mop Lane: a spotless lavender show home with its front taken off so you can peek inside, a giant mop planted on a sky-blue wave, a bucket lookout, a muddy patio waiting for a miracle, and Kasey's van. Domestic cleaning in Sutton-in-Ashfield and across Ashfield.",
+  "homepage": "/",
+  "owner": { "name": "Monica's Miracle Mop", "url": "/" },
+  "scene": { "src": "/atlas/world.glb", "collision": "mesh" },
+  "environment": {
+    "sky": "#d9ccf7",
+    "fog": "#efe9fc",
+    "fogDensity": 0.009,
+    "ambient": 1.15,
+    "sun": "#fff6ea",
+    "sunIntensity": 2.3
+  },
+  "avatar": { "shape": "capsule", "color": "#ae96da" },
+  "spawn": { "position": [0.8, 0, 27], "yaw": 0 },
+  "entities": [
+    {
+      "id": "title",
+      "position": [0, 8.7, -16],
+      "capabilities": {
+        "label": { "text": "MONICA'S MIRACLE MOP", "color": "#622c91", "background": "#fcf9ea", "size": 1.2 }
+      }
+    },
+    {
+      "id": "tagline",
+      "position": [0, 7.6, -16],
+      "capabilities": {
+        "label": { "text": "Sparkling homes, stress-free living", "color": "#1f9ad6", "background": "#fcf9ea", "size": 0.45 }
+      }
+    },
+    {
+      "id": "welcome-south",
+      "position": [0.8, 1, 29],
+      "capabilities": {
+        "trigger": { "size": [6, 3, 3], "onEnter": { "message": "Welcome to Monica's Miracle Mop! Follow the wave to the show home. Shoes on is fine, we'll mop." } },
+        "label": { "text": "Miracle Mop Lane", "color": "#622c91", "background": "#fcf9ea", "size": 0.5, "offset": [0, 3.4, 1.5] }
+      }
+    },
+    {
+      "id": "welcome-west",
+      "position": [-29, 1, 0],
+      "capabilities": {
+        "trigger": { "size": [3, 3, 6], "onEnter": { "message": "Out of the pines and into a spotless garden. Mind the freshly mopped path!" } },
+        "label": { "text": "Miracle Mop Lane", "color": "#622c91", "background": "#fcf9ea", "size": 0.5, "offset": [-1.5, 3.4, 0] }
+      }
+    },
+    {
+      "id": "book-kiosk",
+      "position": [-6, 1.4, 25],
+      "capabilities": {
+        "label": { "text": "Book a clean in minutes", "color": "#ffffff", "background": "#622c91", "size": 0.4, "offset": [0, 1.5, 0] },
+        "interactable": { "prompt": "Book a clean with Kasey", "radius": 3, "action": { "open-url": "/services" } }
+      }
+    },
+    {
+      "id": "postbox",
+      "position": [6, 1.2, 26],
+      "capabilities": {
+        "label": { "text": "Post a note to Kasey", "color": "#622c91", "background": "#fcf9ea", "size": 0.35, "offset": [0, 1.1, 0] },
+        "interactable": { "prompt": "Get in touch with Monica's Miracle Mop", "radius": 2.5, "action": { "open-url": "/contact" } }
+      }
+    },
+    {
+      "id": "svc-standard",
+      "position": [-6.5, 1.8, 20],
+      "capabilities": {
+        "label": { "text": "Standard Clean · £20/hr", "color": "#622c91", "background": "#fcf9ea", "size": 0.35 },
+        "interactable": { "prompt": "Choose a Standard Clean", "radius": 2.6, "action": { "open-url": "/services?service=standard-clean" } }
+      }
+    },
+    {
+      "id": "svc-deep",
+      "position": [-6.5, 1.8, 15.5],
+      "capabilities": {
+        "label": { "text": "Deep Clean · from £100", "color": "#622c91", "background": "#fcf9ea", "size": 0.35 },
+        "interactable": { "prompt": "Choose a Deep Clean", "radius": 2.6, "action": { "open-url": "/services?service=deep-clean" } }
+      }
+    },
+    {
+      "id": "svc-move",
+      "position": [-7.5, 1.8, 11],
+      "capabilities": {
+        "label": { "text": "Move-In / Move-Out · from £150", "color": "#622c91", "background": "#fcf9ea", "size": 0.35 },
+        "interactable": { "prompt": "Choose a Move-In / Move-Out Clean", "radius": 2.6, "action": { "open-url": "/services?service=move-in-out" } }
+      }
+    },
+    {
+      "id": "kaseys-van",
+      "position": [-17, 3, 14],
+      "capabilities": {
+        "label": { "text": "Kasey's van · fully stocked", "color": "#ffffff", "background": "#622c91", "size": 0.35 },
+        "interactable": { "prompt": "Meet Kasey, the woman behind the mop", "radius": 4, "action": { "open-url": "/about" } }
+      }
+    },
+    {
+      "id": "signpost",
+      "position": [-26, 3.4, -3.4],
+      "capabilities": {
+        "label": { "text": "Sutton · Kirkby · Mansfield & more", "color": "#622c91", "background": "#fcf9ea", "size": 0.32 },
+        "interactable": { "prompt": "See the towns we cover", "radius": 3.5, "action": { "open-url": "/areas" } }
+      }
+    },
+    {
+      "id": "sutton-sign",
+      "position": [-26, 1.6, 3.6],
+      "capabilities": {
+        "label": { "text": "Proudly based in Sutton-in-Ashfield", "color": "#ffffff", "background": "#622c91", "size": 0.32, "offset": [0, 1, 0] },
+        "interactable": { "prompt": "House cleaning in Sutton-in-Ashfield", "radius": 3, "action": { "open-url": "/cleaning/sutton-in-ashfield" } }
+      }
+    },
+    {
+      "id": "faq-board",
+      "position": [-9, 1.6, -6],
+      "capabilities": {
+        "label": { "text": "Questions? Answers here.", "color": "#622c91", "background": "#fcf9ea", "size": 0.32, "offset": [0, 1.2, 0] },
+        "interactable": { "prompt": "Read the FAQ board", "radius": 3, "action": { "open-url": "/faq" } }
+      }
+    },
+    {
+      "id": "house-lights",
+      "primitive": { "shape": "sphere", "size": [0.5, 0.5, 0.5], "color": "#fcf9ea", "emissive": "#ffe7b0" },
+      "position": [0, 3, -16],
+      "capabilities": {
+        "state": { "lights": true },
+        "light": { "color": "#ffe7b0", "intensity": 6, "distance": 16, "key": "lights" },
+        "interactable": { "prompt": "Flick the show-home lights", "radius": 6, "action": { "toggle": "lights" } }
+      }
+    },
+    {
+      "id": "oven-door",
+      "primitive": { "shape": "box", "size": [0.7, 0.55, 0.05], "color": "#cfcbd8", "offset": [0, 0.275, 0] },
+      "position": [-4.1, 0.2, -19.97],
+      "capabilities": {
+        "state": { "open": false },
+        "interactable": { "prompt": "Open the oven (go on, it's spotless)", "radius": 2.5, "action": { "toggle": "open" } },
+        "state-transform": { "key": "open", "rotation": [85, 0, 0], "duration": 0.5 },
+        "light": { "color": "#ffb35c", "intensity": 3, "distance": 4, "offset": [0, 0.3, -0.3], "key": "open" }
+      }
+    },
+    {
+      "id": "oven-label",
+      "position": [-4.1, 1.7, -19.9],
+      "capabilities": {
+        "label": { "text": "Oven Cleaning · £40", "color": "#622c91", "background": "#fcf9ea", "size": 0.28 }
+      }
+    },
+    {
+      "id": "gallery-picture",
+      "position": [0, 2.2, -20.5],
+      "capabilities": {
+        "label": { "text": "Before → After", "color": "#622c91", "background": "#fcf9ea", "size": 0.28, "offset": [0, 1.05, 0] },
+        "interactable": { "prompt": "See Kasey's before & after gallery", "radius": 4, "action": { "open-url": "/gallery" } }
+      }
+    },
+    {
+      "id": "bathroom",
+      "position": [5.4, 1.6, -17.5],
+      "capabilities": {
+        "label": { "text": "Bathroom Overhaul · £50", "color": "#622c91", "background": "#fcf9ea", "size": 0.28, "offset": [0, 0.8, 0] },
+        "interactable": { "prompt": "Add a Bathroom Overhaul to your clean", "radius": 3, "action": { "open-url": "/services" } }
+      }
+    },
+    {
+      "id": "laundry",
+      "position": [-18, 3.1, -26],
+      "capabilities": {
+        "label": { "text": "Laundry £15 a load · Ironing £15 a basket", "color": "#622c91", "background": "#fcf9ea", "size": 0.32 },
+        "interactable": { "prompt": "Hand over the laundry basket", "radius": 4, "action": { "open-url": "/services" } }
+      }
+    },
+    {
+      "id": "patio-mud",
+      "primitive": { "shape": "cylinder", "size": [4.2, 0.08, 3.4], "color": "#6b4f33" },
+      "position": [18.5, 0.08, -10],
+      "capabilities": {
+        "state": { "clean": false },
+        "interactable": { "prompt": "Give the muddy patio a Miracle Mop clean", "radius": 3.5, "action": { "toggle": "clean" } },
+        "state-transform": { "key": "clean", "scale": 0.01, "duration": 1.2 },
+        "light": { "color": "#8fd0f2", "intensity": 4, "distance": 8, "offset": [0, 1.2, 0], "key": "clean" }
+      }
+    },
+    {
+      "id": "patio-label",
+      "position": [21, 2.4, -13.6],
+      "capabilities": {
+        "label": { "text": "Muddy patio? Not for long.", "color": "#622c91", "background": "#fcf9ea", "size": 0.35 }
+      }
+    },
+    {
+      "id": "suds-spring",
+      "primitive": { "shape": "cylinder", "size": [3.6, 0.1, 3.6], "color": "#bfe6f8", "emissive": "#1f9ad6" },
+      "position": [12, 0.06, 25],
+      "capabilities": {
+        "trigger": {
+          "size": [3.4, 2.5, 3.4],
+          "onEnter": { "message": "Wheee! Up to the bucket lookout!", "launchTo": { "target": [22, 3.9, 20], "apexHeight": 10 } }
+        },
+        "light": { "color": "#bfe6f8", "intensity": 3, "distance": 8, "offset": [0, 1, 0] },
+        "label": { "text": "Suds Spring: step on!", "color": "#ffffff", "background": "#1f9ad6", "size": 0.35, "offset": [0, 2.2, 0] }
+      }
+    },
+    {
+      "id": "bucket-lookout",
+      "position": [22, 4.9, 20],
+      "capabilities": {
+        "trigger": { "size": [7, 2.2, 7], "onEnter": { "message": "Top of the bucket! Neon Heights glitters to the south. Grab the sparkle, then hop down." } },
+        "label": { "text": "Bucket Lookout", "color": "#ffffff", "background": "#622c91", "size": 0.4, "offset": [0, 2.8, 0] }
+      }
+    },
+    {
+      "id": "sparkle-a",
+      "asset": "/atlas/sparkle.glb",
+      "position": [8, 6, 3],
+      "scale": 2.2,
+      "capabilities": { "spin": { "axis": "y", "speed": 70 }, "bob": { "amplitude": 0.5, "period": 3.2 } }
+    },
+    {
+      "id": "sparkle-b",
+      "asset": "/atlas/sparkle.glb",
+      "position": [16.5, 9.5, 8],
+      "scale": 1.6,
+      "capabilities": { "spin": { "axis": "y", "speed": -90 }, "bob": { "amplitude": 0.4, "period": 2.6 } }
+    },
+    {
+      "id": "sparkle-c",
+      "asset": "/atlas/sparkle.glb",
+      "position": [9, 12.5, 7],
+      "scale": 2.8,
+      "capabilities": { "spin": { "axis": "y", "speed": 50 }, "bob": { "amplitude": 0.6, "period": 4 } }
+    },
+    {
+      "id": "pickup-sparkle",
+      "asset": "/atlas/sparkle.glb",
+      "position": [22, 4.6, 20],
+      "scale": 0.9,
+      "capabilities": {
+        "spin": { "axis": "y", "speed": 120 },
+        "bob": { "amplitude": 0.15, "period": 1.8 },
+        "pickup": {
+          "item": { "id": "miracle-sparkle", "name": "Miracle Sparkle", "description": "The shine left behind after a Miracle Mop clean. Found on top of the big bucket.", "icon": "✨", "color": "#1f9ad6" },
+          "quantity": 1,
+          "respawn": 90,
+          "limit": 1,
+          "radius": 2
+        }
+      }
+    },
+    {
+      "id": "pickup-duck",
+      "primitive": { "shape": "sphere", "size": [0.35, 0.3, 0.35], "color": "#ffd84a", "emissive": "#5a4600" },
+      "position": [5, 0.72, -20.1],
+      "capabilities": {
+        "bob": { "amplitude": 0.03, "period": 1.6 },
+        "pickup": {
+          "item": { "id": "rubber-duck", "name": "Rubber Duck", "description": "Found bobbing in the show-home bubble bath. Squeaky clean, obviously.", "icon": "🦆", "color": "#ffd84a" },
+          "quantity": 1,
+          "respawn": 45,
+          "limit": 1,
+          "radius": 2
+        }
+      }
+    },
+    {
+      "id": "pickup-sponge",
+      "primitive": { "shape": "box", "size": [0.3, 0.12, 0.2], "color": "#ae96da" },
+      "position": [-6.2, 1.02, -20.25],
+      "capabilities": {
+        "pickup": {
+          "item": { "id": "miracle-sponge", "name": "Miracle Sponge", "description": "Lavender-scented and ready for anything. Borrowed from Kasey's kitchen.", "icon": "🧽", "color": "#ae96da" },
+          "quantity": 1,
+          "respawn": 40,
+          "limit": 1,
+          "radius": 2
+        }
+      }
+    },
+    {
+      "id": "pickup-sock",
+      "primitive": { "shape": "box", "size": [0.4, 0.08, 0.16], "color": "#8fd0f2" },
+      "position": [-15.5, 0.1, -24.8],
+      "rotation": [0, 30, 0],
+      "capabilities": {
+        "pickup": {
+          "item": { "id": "lost-sock", "name": "Lost Sock", "description": "Dropped under the washing line. Its partner is still in the machine somewhere.", "icon": "🧦", "color": "#8fd0f2" },
+          "quantity": 1,
+          "respawn": 60,
+          "limit": 1,
+          "radius": 1.8
+        }
+      }
+    },
+    {
+      "id": "golden-mop-award",
+      "position": [11, 0.9, 10.7],
+      "capabilities": {
+        "label": { "text": "The Golden Mop Award", "color": "#622c91", "background": "#fcf9ea", "size": 0.35, "offset": [0, 1.1, 0] },
+        "exchange": {
+          "prompt": "Swap duck, sock, sponge & sparkle for the Golden Mop",
+          "radius": 3,
+          "give": [
+            { "item": "www.monicasmiraclemop.co.uk/rubber-duck" },
+            { "item": "www.monicasmiraclemop.co.uk/lost-sock" },
+            { "item": "www.monicasmiraclemop.co.uk/miracle-sponge" },
+            { "item": "www.monicasmiraclemop.co.uk/miracle-sparkle" }
+          ],
+          "get": {
+            "item": { "id": "golden-mop", "name": "Golden Mop Award", "description": "For finding everything in Miracle Mop Lane. Kasey would be proud.", "icon": "🏆", "color": "#e0b04a" },
+            "quantity": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "mop-bucket",
+      "asset": "/atlas/mop-bucket.glb",
+      "position": [3.5, 0.32, 1.5],
+      "capabilities": {
+        "collider": { "shape": "box" },
+        "rigid-body": { "type": "dynamic", "mass": 2, "friction": 0.6, "restitution": 0.2 }
+      }
+    },
+    {
+      "id": "bubble-a",
+      "primitive": { "shape": "sphere", "size": [0.8, 0.8, 0.8], "color": "#e0f1ff", "emissive": "#2a5f86" },
+      "position": [7.5, 0.45, 13],
+      "capabilities": {
+        "collider": { "shape": "sphere" },
+        "rigid-body": { "type": "dynamic", "mass": 0.3, "restitution": 0.9 }
+      }
+    },
+    {
+      "id": "bubble-b",
+      "primitive": { "shape": "sphere", "size": [0.6, 0.6, 0.6], "color": "#f3e3ff", "emissive": "#5a3a86" },
+      "position": [6.5, 0.35, 14.5],
+      "capabilities": {
+        "collider": { "shape": "sphere" },
+        "rigid-body": { "type": "dynamic", "mass": 0.2, "restitution": 0.9 }
+      }
+    }
+  ]
+}
